@@ -21,6 +21,7 @@
     <hr>
     <input type="submit" value="Save">
 </form>
+<p style="color: red">${message}</p>
 <h4>Condiments of your choice</h4>
 <ol>
     <c:forEach var="condiments" items="${condiments}">

@@ -24,7 +24,10 @@ public class SandwichController {
     }
 
     @PostMapping("/condiments")
-    public String displayCondiments(@RequestParam String[] condiments, Model model) {
+    public String displayCondiments(@RequestParam(required = false) String[] condiments, Model model) {
+        if (condiments == null) {
+            model.addAttribute("message", "Please select!!");
+        }
         model.addAttribute("condiments", condiments);
         List<String> stringList = iSandwichService.findAll();
         model.addAttribute("stringList", stringList);
