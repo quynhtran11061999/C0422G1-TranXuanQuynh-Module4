@@ -2,32 +2,41 @@ package com.medical_declaration.model;
 
 public class Medical {
     private String name;
-    private String dateOfBirth;
+    private String yearOfBirth;
     private String gender;
     private String nationality;
     private String idCard;
     private String vehicle;
     private String vehicleNumber;
     private String seats;
-    private String departureDay;
+    private String startDay;
+    private String startMonth;
+    private String startYear;
     private String endDay;
+    private String endMonth;
+    private String endYear;
     private String route;
 
     public Medical() {
     }
 
-    public Medical(String name, String dateOfBirth, String gender, String nationality, String idCard,
-                   String vehicle, String vehicleNumber, String seats, String departureDay, String endDay, String route) {
+    public Medical(String name, String yearOfBirth, String gender, String nationality, String idCard, String vehicle,
+                   String vehicleNumber, String seats, String startDay, String startMonth, String startYear, String endDay,
+                   String endMonth, String endYear, String route) {
         this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.yearOfBirth = yearOfBirth;
         this.gender = gender;
         this.nationality = nationality;
         this.idCard = idCard;
         this.vehicle = vehicle;
         this.vehicleNumber = vehicleNumber;
         this.seats = seats;
-        this.departureDay = departureDay;
+        this.startDay = startDay;
+        this.startMonth = startMonth;
+        this.startYear = startYear;
         this.endDay = endDay;
+        this.endMonth = endMonth;
+        this.endYear = endYear;
         this.route = route;
     }
 
@@ -39,12 +48,12 @@ public class Medical {
         this.name = name;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public String getYearOfBirth() {
+        return yearOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setYearOfBirth(String yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
     }
 
     public String getGender() {
@@ -95,12 +104,28 @@ public class Medical {
         this.seats = seats;
     }
 
-    public String getDepartureDay() {
-        return departureDay;
+    public String getStartDay() {
+        return startDay;
     }
 
-    public void setDepartureDay(String departureDay) {
-        this.departureDay = departureDay;
+    public void setStartDay(String startDay) {
+        this.startDay = startDay;
+    }
+
+    public String getStartMonth() {
+        return startMonth;
+    }
+
+    public void setStartMonth(String startMonth) {
+        this.startMonth = startMonth;
+    }
+
+    public String getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(String startYear) {
+        this.startYear = startYear;
     }
 
     public String getEndDay() {
@@ -109,6 +134,22 @@ public class Medical {
 
     public void setEndDay(String endDay) {
         this.endDay = endDay;
+    }
+
+    public String getEndMonth() {
+        return endMonth;
+    }
+
+    public void setEndMonth(String endMonth) {
+        this.endMonth = endMonth;
+    }
+
+    public String getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(String endYear) {
+        this.endYear = endYear;
     }
 
     public String getRoute() {
