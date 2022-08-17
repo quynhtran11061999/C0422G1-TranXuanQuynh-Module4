@@ -1,5 +1,6 @@
 package com.medical_declaration.service.impl;
 
+import com.medical_declaration.model.Medical;
 import com.medical_declaration.repository.IMedicalRepository;
 import com.medical_declaration.service.IMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,11 @@ public class MedicalService implements IMedicalService {
 
     @Autowired
     private IMedicalRepository iMedicalRepository;
+
+    @Override
+    public List<Medical> displayList() {
+        return iMedicalRepository.displayList();
+    }
 
     @Override
     public List<String> gender() {
@@ -41,6 +47,21 @@ public class MedicalService implements IMedicalService {
     @Override
     public List<String> year() {
         return iMedicalRepository.year();
+    }
+
+    @Override
+    public Medical findById(int id) {
+        return iMedicalRepository.findById(id);
+    }
+
+    @Override
+    public void add(Medical medical) {
+        iMedicalRepository.add(medical);
+    }
+
+    @Override
+    public void update(int id, Medical medical) {
+        iMedicalRepository.update(id, medical);
     }
 
 }
