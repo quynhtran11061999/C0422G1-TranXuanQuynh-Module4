@@ -56,13 +56,14 @@ public class ProductController {
     }
 
     @GetMapping("/showDetail")
-    public String goDetail(@RequestParam int id, Model model){
-        model.addAttribute("product",this.iProductService.findById(id));
+    public String goDetail(@RequestParam int id, Model model) {
+        model.addAttribute("product", this.iProductService.findById(id));
         return "/detail";
     }
 
     @GetMapping("/showSearchByName")
-    public String goSearchByName(){
-
+    public String goSearchByName(@RequestParam String productName, Model model){
+        model.addAttribute("displayList",this.iProductService.searchByName(productName));
+        return "/list";
     }
 }
