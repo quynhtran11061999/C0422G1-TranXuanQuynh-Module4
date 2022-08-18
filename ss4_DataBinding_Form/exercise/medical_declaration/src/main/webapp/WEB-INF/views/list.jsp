@@ -49,7 +49,7 @@
             <td>${medical.startDay}/${medical.startMonth}/${medical.startYear}</td>
             <td>${medical.endDay}/${medical.endMonth}/${medical.endYear}</td>
             <td>${medical.route}</td>
-            <td><a class="btn btn-success">Sửa</a></td>
+            <td><a href="/showUpdate?id=${medical.id}" class="btn btn-success">Sửa</a></td>
         </tr>
         </c:forEach>
     </table>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -42,12 +43,34 @@ public class MedicalController {
         return "/list";
     }
 
-    @PostMapping("/save")
-    public String goAdd(@ModelAttribute Medical medical, RedirectAttributes redirectAttributes){
-      iMedicalService.add(medical);
-      redirectAttributes.addFlashAttribute("mess","Thêm thành công");
-      return "redirect:/showList";
+    @GetMapping("/showUpdate")
+    public String showUpdate(@RequestParam int id, Model model){
+        List<String> gender = this.iMedicalService.gender();
+        List<String> nationality = this.iMedicalService.nationality();
+        List<String> vehicle = this.iMedicalService.vehicle();
+        List<String> day = this.iMedicalService.day();
+        List<String> month = this.iMedicalService.month();
+        List<String> year = this.iMedicalService.year();
+        model.addAttribute("gender",gender);
+        model.addAttribute("nationality",nationality);
+        model.addAttribute("vehicle",vehicle);
+        model.addAttribute("day",day);
+        model.addAttribute("month",month);
+        model.addAttribute("year",year);
+        model.addAttribute("person",iMedicalService.findById(id));
+        return "/update";
     }
 
+    @PostMapping("/save")
+    public String goAdd(@ModelAttribute Medical medical, RedirectAttributes redirectAttributes){
+        iMedicalService.add(medical);
+        redirectAttributes.addFlashAttribute("mess","Thêm thành công");
+        return "redirect:/showList";
+    }
 
+    @PostMapping("/update")
+    public String update(@ModelAttribute Medical medical, @RequestParam int id){
+        iMedicalService.update(id, medical);
+        return "redirect:/showList";
+    }
 }

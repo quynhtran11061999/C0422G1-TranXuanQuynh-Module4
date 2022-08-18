@@ -36,7 +36,7 @@ public class MedicalRepository implements IMedicalRepository {
             day.add(String.valueOf(i));
         }
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 1; i < 13; i++) {
             month.add(String.valueOf(i));
         }
 
@@ -82,8 +82,8 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public Medical findById(int id) {
-        for (Medical medical: medicals) {
-            if (medical.getId() == id){
+        for (Medical medical : medicals) {
+            if (medical.getId() == id) {
                 return medical;
             }
         }
@@ -99,8 +99,8 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public void update(int id, Medical medical) {
-        for (Medical medical1: medicals) {
-            if (medical1.getId() == id){
+        for (Medical medical1 : medicals) {
+            if (medical1.getId() == id) {
                 medical1.setName(medical.getName());
                 medical1.setYearOfBirth(medical.getYearOfBirth());
                 medical1.setGender(medical.getGender());
