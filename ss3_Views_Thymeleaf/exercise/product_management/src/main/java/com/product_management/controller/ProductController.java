@@ -43,8 +43,8 @@ public class ProductController {
 
 
     @GetMapping("/showSearchByName")
-    public String goSearchByName(@RequestParam String productName, Model model) {
-        model.addAttribute("displayList", this.iProductService.searchByName(productName));
+    public String goSearchByName(@RequestParam String name, Model model) {
+        model.addAttribute("displayList", this.iProductService.searchByName(name));
         return "/list";
     }
 

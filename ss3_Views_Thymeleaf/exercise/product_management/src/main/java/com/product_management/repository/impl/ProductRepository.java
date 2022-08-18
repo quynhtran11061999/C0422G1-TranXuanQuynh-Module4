@@ -51,11 +51,11 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public List<Product> searchByName(String name) {
-        List<Product> productList = new ArrayList<>(productMap.values());
         List<Product> products = new ArrayList<>();
-        for (Product product : productList) {
-            if (product.getName().toLowerCase().contains(name.toLowerCase())) ;
-            products.add(product);
+        for (Integer i : productMap.keySet()) {
+            if (productMap.get(i).getName().toLowerCase().contains(name.toLowerCase())) {
+                products.add(productMap.get(i));
+            }
         }
         return products;
     }
