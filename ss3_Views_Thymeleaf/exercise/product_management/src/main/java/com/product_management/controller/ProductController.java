@@ -29,17 +29,30 @@ public class ProductController {
         return "/add";
     }
 
+    @GetMapping("/showUpdate")
+    public String showUpdate(@RequestParam int id, Model model) {
+        model.addAttribute("product", this.iProductService.findById(id));
+        return "/update";
+    }
+
+    @GetMapping("/showDetail")
+    public String goDetail(@RequestParam int id, Model model) {
+        model.addAttribute("product", this.iProductService.findById(id));
+        return "/detail";
+    }
+
+
+    @GetMapping("/showSearchByName")
+    public String goSearchByName(@RequestParam String productName, Model model) {
+        model.addAttribute("displayList", this.iProductService.searchByName(productName));
+        return "/list";
+    }
+
     @PostMapping("/add")
     public String goAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         this.iProductService.add(product);
         redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
         return "redirect:/";
-    }
-
-    @GetMapping("/showUpdate")
-    public String showUpdate(@RequestParam int id, Model model) {
-        model.addAttribute("product", this.iProductService.findById(id));
-        return "/update";
     }
 
     @PostMapping("/update")
@@ -53,17 +66,5 @@ public class ProductController {
     public String goDelete(@RequestParam int id) {
         this.iProductService.delete(id);
         return "redirect:/";
-    }
-
-    @GetMapping("/showDetail")
-    public String goDetail(@RequestParam int id, Model model) {
-        model.addAttribute("product", this.iProductService.findById(id));
-        return "/detail";
-    }
-
-    @GetMapping("/showSearchByName")
-    public String goSearchByName(@RequestParam String productName, Model model){
-        model.addAttribute("displayList",this.iProductService.searchByName(productName));
-        return "/list";
     }
 }

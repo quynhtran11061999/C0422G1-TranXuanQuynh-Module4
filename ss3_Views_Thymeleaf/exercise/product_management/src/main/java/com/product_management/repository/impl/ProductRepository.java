@@ -53,8 +53,8 @@ public class ProductRepository implements IProductRepository {
     public List<Product> searchByName(String name) {
         List<Product> productList = new ArrayList<>(productMap.values());
         List<Product> products = new ArrayList<>();
-        for (Product product: productList) {
-            if (product.getName().toLowerCase().contains(name.toLowerCase()));
+        for (Product product : productList) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) ;
             products.add(product);
         }
         return products;
