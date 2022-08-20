@@ -3,18 +3,14 @@ package com.codegym.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "music")
+@Table
 public class Music {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name_of_song")
     private String nameOfSong;
-    @Column(name = "artists_show")
     private String artistsShow;
-    @Column(name = "kind_of_music")
     private String kindOfMusic;
-    @Column(name = "song_file_path")
     private String songFilePath;
 
     public Music() {

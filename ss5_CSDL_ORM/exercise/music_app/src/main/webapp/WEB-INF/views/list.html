@@ -1,16 +1,66 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: quynh
-  Date: 19/08/2022
-  Time: 11:16 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>$Title$</title>
+    <title>Music List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
   <body>
-  $END$
+  <h2 class="text-center">DANH SÁCH BÀI HÁT</h2>
+  <nav th:replace="~{nav :: navbar}"></nav>
+<div class="container-fluid">
+  <form>
+    <table class="table table-success table-striped">
+      <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Tên bài hát</th>
+        <th>Nhạc sĩ thể hiện</th>
+        <th>Thể loại nhạc</th>
+        <th>Đường dẫn file bài hát</th>
+        <th>Chức năng</th>
+      </tr>
+      <tr th:each="music,status:${musicList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${music.id}"></td>
+        <td th:text="${music.nameOfSong}"></td>
+        <td th:text="${music.artistsShow}"></td>
+        <td th:text="${music.kindOfMusic}"></td>
+        <td th:text="${music.songFilePath}"></td>
+        <td>
+          <a th:href="@{/showUpdate(id=${music.id})}" class="btn btn-success">Sửa</a>
+          <a th:attr="onclick=|deleteMusic(${music.id})|" data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-success">Xóa</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+          crossorigin="anonymous"></script>
+  <!-- Modal -->
+  <form action="/delete" method="post">
+    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thông báo!!!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Bạn có chắc chắn xóa <input id="id" name="id">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script>
+    function deleteMusic(id) {
+      document.getElementById("id").value= id;
+    }
+  </script>
   </body>
 </html>
