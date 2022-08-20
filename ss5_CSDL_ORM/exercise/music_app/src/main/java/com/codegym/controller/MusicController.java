@@ -38,6 +38,15 @@ public class MusicController {
         return "/add";
     }
 
+    @GetMapping("/showUpdate")
+    public String goUpdatePage(@RequestParam int id, Model model) {
+        Music music = this.iMusicService.findById(id);
+        MusicForm musicForm = new MusicForm();
+        BeanUtils.copyProperties(music, musicForm);
+        model.addAttribute("musicForm", musicForm);
+        return "update";
+    }
+
 //    @PostMapping("/save")
 //    public String save(@ModelAttribute MusicForm musicForm) {
 //        MultipartFile multipartFile = musicForm.getSongFilePath();
@@ -55,13 +64,24 @@ public class MusicController {
 //    }
 
 
-    @GetMapping("/showUpdate")
-    public String goUpdatePage(@RequestParam int id, Model model) {
-        Music music = this.iMusicService.findById(id);
-        MusicForm musicForm = new MusicForm();
-        BeanUtils.copyProperties(music, musicForm);
-        model.addAttribute("musicForm", musicForm);
-        return "update";
+    @PostMapping("/update")
+    public String saveUpdate(@ModelAttribute MusicForm musicForm) {
+        Music oldMusic = this.iMusicService.findById(musicForm.getId());
+        MultipartFile multipartFile = musicForm.getSongFilePath();
+        String fileName = multipartFile.getOriginalFilename();
+
+        try {
+            FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Music music = new Music(oldMusic.getId(), oldMusic.getNameOfSong(), oldMusic.getArtistsShow(), oldMusic.getKindOfMusic(), fileName);
+        if (music.getSongFilePath().equals("")) {
+            music.setSongFilePath(oldMusic.getSongFilePath());
+        }
+        this.iMusicService.update(music);
+        return "redirect:/";
     }
 
     @PostMapping("/delete")
