@@ -47,21 +47,25 @@ public class MusicController {
         return "update";
     }
 
-//    @PostMapping("/save")
-//    public String save(@ModelAttribute MusicForm musicForm) {
-//        MultipartFile multipartFile = musicForm.getSongFilePath();
-//        String fileName = multipartFile.getOriginalFilename();
-//
-//        try {
-//            FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Music music = new Music(musicForm.getNameOfSong(), musicForm.getArtistsShow(), musicForm.getKindOfMusic(), fileName);
-//        this.iMusicService.add(music);
-//        return "redirect:/";
-//    }
+    @PostMapping("/save")
+    public String save(@ModelAttribute MusicForm musicForm, Model model) {
+        MultipartFile multipartFile = musicForm.getSongFilePath();
+        String fileName = multipartFile.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(musicForm.getSongFilePath().getBytes(),
+                    new File(fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Music music = new Music(musicForm.getId(), musicForm.getNameOfSong(), musicForm.getArtistsShow(),
+                musicForm.getKindOfMusic(), fileName);
+        this.iMusicService.add(music);
+        model.addAttribute("msg", "Create successfully!");
+        model.addAttribute("musicList",
+                this.iMusicService.findAll());
+        return "view";
+    }
 
 
     @PostMapping("/update")
