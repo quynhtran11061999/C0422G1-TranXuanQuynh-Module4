@@ -20,6 +20,8 @@ public class ProductService implements IProductService {
 
     @Override
     public void add(Product product) {
+        int id = (int) Math.floor(Math.random() * 1000);
+        product.setId(id);
         iProductRepository.add(product);
     }
 
