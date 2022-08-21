@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class MusicService implements IMusicService {
     @Autowired
-    IMusicRepository iMusicRepository;
+    private IMusicRepository iMusicRepository;
     @Override
     public List<Music> findAll() {
         return this.iMusicRepository.findAll();

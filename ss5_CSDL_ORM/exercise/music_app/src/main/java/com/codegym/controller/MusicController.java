@@ -21,7 +21,7 @@ import java.io.IOException;
 @Controller
 public class MusicController {
     @Autowired
-    IMusicService iMusicService;
+    private IMusicService iMusicService;
 
     @Value("${file-upload}")
     private String fileUpload;
@@ -64,7 +64,7 @@ public class MusicController {
         model.addAttribute("msg", "Create successfully!");
         model.addAttribute("musicList",
                 this.iMusicService.findAll());
-        return "view";
+        return "list";
     }
 
 
