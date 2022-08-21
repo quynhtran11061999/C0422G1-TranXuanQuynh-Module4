@@ -11,8 +11,6 @@ import java.util.List;
 
 @Repository
 public class MusicRepository implements IMusicRepository {
-    private List<Music> musicList = new ArrayList<>();
-
     @Override
     public List<Music> findAll() {
         TypedQuery<Music> query = BaseRepository.entityManager.createQuery("select m from Music m", Music.class);

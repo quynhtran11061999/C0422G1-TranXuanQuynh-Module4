@@ -44,10 +44,10 @@ public class MusicController {
         MusicForm musicForm = new MusicForm();
         BeanUtils.copyProperties(music, musicForm);
         model.addAttribute("musicForm", musicForm);
-        return "update";
+        return "/update";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/add")
     public String save(@ModelAttribute MusicForm musicForm, Model model) {
         MultipartFile multipartFile = musicForm.getSongFilePath();
         String fileName = multipartFile.getOriginalFilename();
@@ -57,14 +57,12 @@ public class MusicController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Music music = new Music(musicForm.getId(), musicForm.getNameOfSong(), musicForm.getArtistsShow(),
                 musicForm.getKindOfMusic(), fileName);
         this.iMusicService.add(music);
-        model.addAttribute("msg", "Create successfully!");
         model.addAttribute("musicList",
                 this.iMusicService.findAll());
-        return "list";
+        return "/list";
     }
 
 
@@ -73,13 +71,11 @@ public class MusicController {
         Music oldMusic = this.iMusicService.findById(musicForm.getId());
         MultipartFile multipartFile = musicForm.getSongFilePath();
         String fileName = multipartFile.getOriginalFilename();
-
         try {
             FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Music music = new Music(oldMusic.getId(), oldMusic.getNameOfSong(), oldMusic.getArtistsShow(), oldMusic.getKindOfMusic(), fileName);
         if (music.getSongFilePath().equals("")) {
             music.setSongFilePath(oldMusic.getSongFilePath());
