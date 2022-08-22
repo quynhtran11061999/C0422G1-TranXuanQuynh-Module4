@@ -48,7 +48,7 @@ public class MusicController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute MusicForm musicForm, Model model) {
+    public String save(@ModelAttribute MusicForm musicForm) {
         MultipartFile multipartFile = musicForm.getSongFilePath();
         String fileName = multipartFile.getOriginalFilename();
         try {
@@ -60,9 +60,8 @@ public class MusicController {
         Music music = new Music(musicForm.getId(), musicForm.getNameOfSong(), musicForm.getArtistsShow(),
                 musicForm.getKindOfMusic(), fileName);
         this.iMusicService.add(music);
-        model.addAttribute("musicList",
-                this.iMusicService.findAll());
-        return "/list";
+
+        return "redirect:/";
     }
 
 
