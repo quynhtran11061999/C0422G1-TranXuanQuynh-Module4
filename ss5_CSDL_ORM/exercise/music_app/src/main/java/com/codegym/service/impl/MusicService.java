@@ -19,7 +19,7 @@ public class MusicService implements IMusicService {
 
     @Override
     public void add(Music music) {
-        music.setSongFilePath("http://127.0.0.1:8887/" + music.getSongFilePath());
+//        music.setSongFilePath("http://127.0.0.1:8887/" + music.getSongFilePath());
         this.iMusicRepository.add(music);
     }
 

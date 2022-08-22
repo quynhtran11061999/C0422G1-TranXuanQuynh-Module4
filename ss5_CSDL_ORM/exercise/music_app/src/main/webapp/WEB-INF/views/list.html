@@ -26,10 +26,11 @@
         <td th:text="${music.artistsShow}"></td>
         <td th:text="${music.kindOfMusic}"></td>
         <td>
-<!--          <audio controls>-->
-<!--            <source th:src="@{'D:/music/' + ${music.songFilePath} }">-->
-<!--          </audio>-->
-          <a th:href="${music.getSongFilePath()}">nghe nhac</a>
+          <audio controls>
+<!--              <source th:src="@{'/music/' + ${music.link}}">-->
+            <source th:src="@{'/music/' + ${music.songFilePath}}">
+          </audio>
+<!--          <a th:href="${music.getSongFilePath()}">nghe nhac</a>-->
         </td>
         <td>
           <a th:href="@{/showUpdate(id=${music.id})}" class="btn btn-success">Sửa</a>
