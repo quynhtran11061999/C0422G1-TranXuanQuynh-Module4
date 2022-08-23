@@ -16,7 +16,7 @@ public class Music {
     public Music() {
     }
 
-    public Music(int id, String nameOfSong, String artistsShow, String kindOfMusic, String songFilePath) {
+    public Music(int id, String nameOfSong, String artistsShow, String kindOfMusic, String   songFilePath) {
         this.id = id;
         this.nameOfSong = nameOfSong;
         this.artistsShow = artistsShow;

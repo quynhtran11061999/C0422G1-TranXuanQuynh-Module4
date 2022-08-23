@@ -64,7 +64,6 @@ public class MusicController {
         return "redirect:/";
     }
 
-
     @PostMapping("/update")
     public String saveUpdate(@ModelAttribute MusicForm musicForm) {
         Music oldMusic = this.iMusicService.findById(musicForm.getId());
