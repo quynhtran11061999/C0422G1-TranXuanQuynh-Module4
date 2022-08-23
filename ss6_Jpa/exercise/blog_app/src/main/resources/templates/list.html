@@ -34,7 +34,7 @@
                 <td th:text="${blog.author}"></td>
                 <td>
                     <a th:href="@{/showUpdate(id=${blog.id})}" class="btn btn-dark">Sửa</a>
-                    <a th:attr="onclick=|deleteBlog(${blog.id})|" data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-dark">Xóa</a>
+                    <a th:attr="onclick=|deleteBlog('${blog.id}','${blog.title}')|" data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-dark">Xóa</a>
                     <a th:href="@{/showDetail(id=${blog.id})}" class="btn btn-dark">Chi tiết</a>
                 </td>
             </tr>
@@ -51,9 +51,10 @@
                     <h5 class="modal-title" id="exampleModalLabel">Thông báo!!!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Bạn có chắc chắn xóa <input id="id" name="id">
-                </div>
+                <b class="ml-5px">ID :</b>
+                <input type="text" readonly name="id" id="id" class="form-control"><br>
+                <b class="ml-5px">Tiêu đề :</b>
+                <input type="text" readonly name="title" id="title" class="form-control"><br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Delete</button>
@@ -63,8 +64,10 @@
     </div>
 </form>
 <script>
-    function deleteBlog(id) {
+    function deleteBlog(id,title) {
         document.getElementById("id").value= id;
+        document.getElementById("title").value= title;
+
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
