@@ -31,8 +31,10 @@
                 <td th:text="${product.producer}"></td>
                 <td>
                     <a th:href="@{/showUpdate(id=${product.id})}" class="btn btn-success">Sửa</a>
-                    <a th:attr="onclick=|deleteProduct(${product.id})|" data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-success">Xóa</a>
+                    <a th:attr="onclick=|deleteProduct('${product.id}','${product.name}')|" data-bs-toggle="modal"
+                       data-bs-target="#delete" class="btn btn-success">Xóa</a>
                     <a th:href="@{/showDetail(id=${product.id})}" class="btn btn-success">Chi tiết</a>
+<!--                    th:attr="onclick=|deleteProduct('${product.id}','${product.name}')|"-->
                 </td>
             </tr>
         </table>
@@ -51,9 +53,10 @@
                     <h5 class="modal-title" id="exampleModalLabel">Thông báo!!!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Bạn có chắc chắn xóa <input id="id" name="id">
-                </div>
+                <b class="ml-5px">ID:</b>
+                <input type="text" readonly name="id" id="id" class="form-control"><br>
+                <b class="ml-5px">Tên sản phầm:</b>
+                <input type="text" readonly name="name" id="name" class="form-control"><br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Delete</button>
@@ -90,8 +93,9 @@
 </div>
 
 <script>
-    function deleteProduct(id) {
-        document.getElementById("id").value= id;
+    function deleteProduct(id,name) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
     }
 </script>
 </body>
