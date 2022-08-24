@@ -30,6 +30,17 @@
             </tr>
             <tr>
                 <td>
+                    <label class="form-label">Thể loại</label>
+                    <div class="form-control" size="45px">
+                        <select th:field="*{category}" style="width: 100%"
+                                class="form-select-lg text-center">
+                            <option th:each="category:${categorys}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label class="form-label">Tác giả</label>
                     <input type="text" th:field="*{author}" class="form-control">
                 </td>

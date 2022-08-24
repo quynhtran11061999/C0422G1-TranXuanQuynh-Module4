@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="/" class="navbar-brand text-light">Danh sách blog</a>
+            </div>
+            <div class="col-lg-6">
+                <a href="/showAdd" class="navbar-brand text-light">Thêm mới blog</a>
+            </div>
+        </div>
+        <form class="d-flex">
+            <input class="form-control me-2" style="width: 300px" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+</body>
+</html>
