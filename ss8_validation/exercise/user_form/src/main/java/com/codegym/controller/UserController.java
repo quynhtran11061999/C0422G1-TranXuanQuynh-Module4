@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/showAdd")
     public String showAdd(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "/add";
     }
 

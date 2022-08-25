@@ -13,18 +13,19 @@ import java.time.Period;
 public class UserDto implements Validator {
     @NotBlank(message = "Vui lòng nhập vào!!!")
     @Size(min = 5, max = 45)
-    @Pattern(regexp = "[A-Za-z ]+",message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
+    @Pattern(regexp = "[A-Za-z ]+", message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private String firstName;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
     @Size(min = 5, max = 45)
-    @Pattern(regexp = "[A-Za-z ]+",message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
+    @Pattern(regexp = "[A-Za-z ]+", message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private String lastName;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
-    @Pattern(regexp = "[0-9]{10}",message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
+    @Pattern(regexp = "(09)[0-9]{8}", message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private String phoneNumber;
 
+    @NotBlank(message = "Vui lòng nhập vào!!!")
     private String age;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
@@ -83,10 +84,12 @@ public class UserDto implements Validator {
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
         String ageVal = userDto.getAge();
-        LocalDate localDate = LocalDate.parse(ageVal);
-        Period period = Period.between(localDate,LocalDate.now());
-        if (period.getYears()<18){
-            errors.rejectValue("age","add.age","Phải lớn hơn hoặc bằng 18 tuổi!!!");
+        if (age != null) {
+            LocalDate localDate = LocalDate.parse(ageVal);
+            Period period = Period.between(localDate, LocalDate.now());
+            if (period.getYears() < 18) {
+                errors.rejectValue("age", "add.age", "Phải lớn hơn hoặc bằng 18 tuổi!!!");
+            }
         }
     }
 }
