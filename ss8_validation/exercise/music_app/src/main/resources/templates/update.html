@@ -20,18 +20,21 @@
                 <td>
                     <label class="form-label">Tên bài hát</label>
                     <input type="text" th:field="*{nameOfSong}" class="form-control">
+                    <div class="text-danger" th:errors="*{nameOfSong}"></div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label class="form-label">Nghệ sĩ thể hiện</label>
                     <input type="text" th:field="*{artistsShow}" class="form-control">
+                    <div class="text-danger" th:errors="*{artistsShow}"></div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label class="form-label">Thể loại nhạc</label>
                     <input type="text" th:field="*{kindOfMusic}" class="form-control">
+                    <div class="text-danger" th:errors="*{kindOfMusic}"></div>
                 </td>
             </tr>
             <tr>

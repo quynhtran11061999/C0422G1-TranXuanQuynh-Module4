@@ -23,8 +23,8 @@ public class MusicController {
     private IMusicService iMusicService;
 
     @GetMapping("/")
-    public String showList(Model model){
-        model.addAttribute("musicList",this.iMusicService.findAll());
+    public String showList(Model model) {
+        model.addAttribute("musicList", this.iMusicService.findAll());
         return "/list";
     }
 
@@ -44,13 +44,26 @@ public class MusicController {
     public String add(@ModelAttribute("music") @Valid MusicDto musicDto,
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "/add";
         }
         Music music = new Music();
         BeanUtils.copyProperties(musicDto, music);
         this.iMusicService.save(music);
         redirectAttributes.addFlashAttribute("message", "Đăng kí thành công!!!");
+        return "redirect:/";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute(name = "music") @Valid MusicDto musicDto,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/update";
+        }
+        Music music = new Music();
+        music.setId(musicDto.getId());
+        BeanUtils.copyProperties(musicDto, music);
+        iMusicService.save(music);
         return "redirect:/";
     }
 }
