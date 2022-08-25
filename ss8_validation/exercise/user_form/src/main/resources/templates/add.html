@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <h2 class="text-center">THÊM MỚI USER</h2>
+    <nav th:replace="~{nav :: navbar}"></nav>
+    <form action="/add" method="post" th:object="${user}" enctype="multipart/form-data">
+        <table class="table table-light table-striped">
+            <tr>
+                <td>
+                    <label class="form-label">Họ</label>
+                    <input type="text" th:field="*{firstName}" class="form-control">
+                    <div class="text-danger" th:errors="*{firstName}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-label">Tên</label>
+                    <input type="text" th:field="*{lastName}" class="form-control">
+                    <div class="text-danger" th:errors="*{lastName}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" th:field="*{phoneNumber}" class="form-control">
+                    <div class="text-danger" th:errors="*{phoneNumber}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-label">Tuổi</label>
+                    <input type="date" th:field="*{age}" class="form-control">
+                    <div class="text-danger" th:errors="*{age}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-label">Email</label>
+                    <input type="text" th:field="*{email}" class="form-control">
+                    <div class="text-danger" th:errors="*{email}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-dark" type="submit" value="Tạo mới User"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+</html>
