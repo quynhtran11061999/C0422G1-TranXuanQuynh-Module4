@@ -1,5 +1,6 @@
 package com.codegym.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -26,6 +27,7 @@ public class UserDto implements Validator {
     private String phoneNumber;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
+    @DateTimeFormat
     private String age;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
