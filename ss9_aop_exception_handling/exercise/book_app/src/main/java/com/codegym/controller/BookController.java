@@ -31,13 +31,13 @@ public class BookController {
     @GetMapping("/borrow")
     public String borrow(@RequestParam int id, Model model) throws Exception {
         Book book = iBookService.findById(id);
-        if (book.getTotal() == 0) {
+        if (book.getAmount() == 0) {
             throw new Exception();
         }
-        book.setTotal(book.getTotal() - 1);
+        book.setAmount(book.getAmount() - 1);
         iBookService.save(book);
-        model.addAttribute("mess", "Mượn thành công");
-        model.addAttribute("detail", iBookService.findById(id));
+        model.addAttribute("message", "Mượn thành công");
+        model.addAttribute("book", iBookService.findById(id));
         return "detail";
     }
 
@@ -52,12 +52,13 @@ public class BookController {
         if (book==null){
             throw new Exception();
         }
-        if (book.getTotal()>=book.getAmount()){
-            model.addAttribute("mess","Đủ sách rồi");
+        if (book.getAmount()>=book.getTotal()){
+            model.addAttribute("mess","Đã đủ số lượng sách");
             return "pay";
         }
-        book.setTotal(book.getTotal()+1);
+        book.setAmount(book.getAmount()+1);
         iBookService.save(book);
+        model.addAttribute("messPay","Trả sách thành công");
         return "pay";
     }
 

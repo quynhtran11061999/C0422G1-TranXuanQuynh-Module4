@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <h2 class="text-center">CHI TIẾT SÁCH</h2>
     <nav th:replace="~{nav :: navbar}"></nav>
-    <p th:text="${mess}"></p>
+    <h4 class="text-success" th:text="${message}"></h4>
     <table class="table table-light table-striped">
         <tr>
             <td>Id: <span th:text="${book.id}"></span></td>

@@ -9,7 +9,8 @@
 <body>
 <h2 class="text-center">TRẢ SÁCH</h2>
 <nav th:replace="~{nav :: navbar}"></nav>
-<p th:text="${mess}"></p>
+<h4 class="text-danger" th:text="${mess}"></h4>
+<h4 class="text-success" th:text="${messPay}"></h4>
 <form action="/payBook" method="post">
     <input type="number" name="id">
     <br>
