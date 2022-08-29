@@ -93,26 +93,19 @@
             </tr>
             </thead>
             <tbody>
-            <th:each var="cus" items="${customerList}">
-                <tr>
-                    <td>${cus.idCustomer}</td>
-                    <%--                    <td>${cus.customerTypeId}</td>--%>
+                <tr th:each="cus:${customerList}">
+                    <td th:text="${cus.id}"></td>
+                    <td th:text="${cus.customerType.customerTypeName}"></td>
+                    <td th:text="${cus.name}"></td>
+                    <td th:text="${cus.dayOfBirth}"></td>
+                    <td th:if="${cus.gender}" th:text="Nam"></td>
+                    <td th:unless="${cus.gender}" th:text="Nữ"></td>
+                    <td th:text="${cus.idCard}"></td>
+                    <td th:text="${cus.phoneNumber}"></td>
+                    <td th:text="${cus.email}"></td>
+                    <td th:text="${cus.address}"></td>
                     <td>
-                        <th:each var="customerType" items="${customerTypeList}">
-                            <th:if test="${cus.customerTypeId==customerType.customerTypeId}">
-                                ${customerType.customerTypeName}
-                            </th:if>
-                        </th:each>
-                    </td>
-                    <td>${cus.name}</td>
-                    <td>${cus.birthday}</td>
-                    <td>${cus.gender}</td>
-                    <td>${cus.idCard}</td>
-                    <td>${cus.phoneNumber}</td>
-                    <td>${cus.email}</td>
-                    <td>${cus.address}</td>
-                    <td>
-                        <a href="/customer?action=showEditCustomer&idCustomer=${cus.idCustomer}"
+                        <a th:href="/customer/showEditCustomer&idCustomer=${cus.idCustomer}"
                            class="text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
                                  class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -130,7 +123,6 @@
 
                     </td>
                 </tr>
-            </th:each>
             </tbody>
         </table>
     </div>

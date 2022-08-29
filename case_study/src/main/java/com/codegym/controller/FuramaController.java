@@ -9,5 +9,4 @@ public class FuramaController {
     public String goHome(){
         return "home";
     }
-
 }
