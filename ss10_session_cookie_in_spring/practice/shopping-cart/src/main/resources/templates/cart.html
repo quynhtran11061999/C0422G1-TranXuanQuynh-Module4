@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <table>
+        <tr>
+            <th>Tên</th>
+            <th>giá</th>
+            <th>số lượng</th>
+        </tr>
+        <tr th:each="product:${cart.keySet()}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${cart.get(product)}"></td>
+        </tr>
+        <tr>
+            <td>Tổng tiền:</td>
+            <td th:text="${total}"></td>
+            <td>VND</td>
+        </tr>
+    </table>
+</div>
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
