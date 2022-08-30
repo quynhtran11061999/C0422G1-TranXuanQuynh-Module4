@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div  th:fragment="header" class="container-fluid">
@@ -46,7 +46,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/customer/list">Danh sách khách hàng</a></li>
-                                <li><a class="dropdown-item" href="/customer/add">Thêm mới khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer/showAdd">Thêm mới khách hàng</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -72,6 +72,6 @@
         </nav>
     </div>
 </div>
-<%--<script src="bootstrap/js/bootstrap.bundle.min.js"></script>--%>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

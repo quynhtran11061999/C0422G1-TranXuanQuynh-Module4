@@ -20,7 +20,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return this.iCustomerRepository.findById(id).orElse(null);
     }
 
     @Override

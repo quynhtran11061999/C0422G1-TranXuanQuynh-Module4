@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <title>ADD Customer</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <header th:replace="~{layout/header::header}"></header>
 <div class="container">
-    <form action="/customer?action=insertCustomer" method="post">
+    <form action="/customer/add" method="post" th:object="${customer}">
         <h1>Thêm mới khách hàng</h1>
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
@@ -16,12 +16,12 @@
                     <td>
                         <label>Mã loại khách:</label>
                         <div class="form-control" size="45px">
-                            <select name="customerTypeId" id="customerTypeId" style="width: 100%" class="form-select-lg text-center">
-                                <option value="1">Diamond</option>
-                                <option value="2">Platinium</option>
-                                <option value="3">Gold</option>
-                                <option value="4">Silver</option>
-                                <option value="5">Member</option>
+                            <select th:field="*{customerType}" name="customerTypeId" id="customerTypeId" style="width: 100%" class="form-select-lg text-center">
+                                <option th:value="1">Diamond</option>
+                                <option th:value="2">Platinium</option>
+                                <option th:value="3">Gold</option>
+                                <option th:value="4">Silver</option>
+                                <option th:value="5">Member</option>
                             </select>
                         </div>
                     </td>
@@ -30,53 +30,49 @@
                     <td>
                         <label>Họ tên:</label>
                         <input class="form-control" type="text" name="name" id="name" size="45px">
-                        <div style="color: red">${nameCustomer}</div>
+                        <div style="color: red" th:field="*{name}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Ngày sinh:</label>
-                        <input type="date" name="birthday" id="birthday" size="45px" class="text-center form-control">
-                        <p class="text-danger">${dateOfBirth}</p>
+                        <input type="date"  size="45px" class="text-center form-control" th:field="*{dayOfBirth}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Giới tính:</label>
-                        <input required type="text" name="gender" id="gender" size="45px" class="form-control">
+                        <input required type="text" size="45px" class="form-control" th:field="*{gender}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Số CMND:</label>
-                        <input type="text" name="idCard" id="idCard" size="45px" class="form-control">
-                        <div style="color: red">${idCard}</div>
+                        <input type="text" size="45px" class="form-control" th:field="*{idCard}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Số điện thoại:</label>
-                        <input type="text" name="phoneNumber" id="phoneNumber" size="45px" class="form-control">
-                        <div style="color: red">${phoneNumber}</div>
+                        <input type="text" size="45px" class="form-control" th:field="*{phoneNumber}">
                     </td>
                 </tr>
                 <tr>
 
                     <td>
                         <label>Email:</label>
-                        <input type="text" name="email" id="email" size="45px" class="form-control">
-                        <div style="color: red">${email}</div>
+                        <input type="text" size="45px" class="form-control" th:field="*{email}">
                     </td>
                 </tr>
                 <tr>
 
                     <td>
                         <label>Địa chỉ:</label>
-                        <input required type="text" name="address" id="address" size="45px" class="form-control">
+                        <input size="45px" class="form-control" th:field="*{address}">
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center">
+                    <td colspan="2" class="text-center">
                         <input class="form-control btn-success" style="width: 300px" type="submit"
                                value="Thêm mới khách hàng">
                     </td>
@@ -86,6 +82,6 @@
     </form>
 </div>
 <footer th:replace="~{layout/footer::footer}"></footer>
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
