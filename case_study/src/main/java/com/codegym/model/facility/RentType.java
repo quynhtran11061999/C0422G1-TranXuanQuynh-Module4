@@ -17,10 +17,10 @@ import java.util.List;
 @Table(name = "kieu_thue")
 public class RentType {
     @Id
-    @Column(name = "ma_loai_dich_vu")
+    @Column(name = "ma_kieu_thue")
     private int rentTypeId;
 
-    @Column(name = "ten_loai_dich_vu")
+    @Column(name = "ten_kieu_thue")
     private String rentTypeName;
 
     @OneToMany(mappedBy = "rentTypeId", cascade = CascadeType.REMOVE)
