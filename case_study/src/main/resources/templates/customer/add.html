@@ -14,9 +14,9 @@
             <table class="form-control-lg table table-success table-striped">
                 <tr>
                     <td>
-                        <label>Mã loại khách:</label>
+                        <span>Loại khách:</span>
                         <div class="form-control" size="45px">
-                            <select th:field="*{customerType}" name="customerTypeId" id="customerTypeId" style="width: 100%" class="form-select-lg text-center">
+                            <select th:field="*{customerType}" style="width: 100%" class="form-select-lg text-center">
                                 <option th:value="1">Diamond</option>
                                 <option th:value="2">Platinium</option>
                                 <option th:value="3">Gold</option>
@@ -28,52 +28,54 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Họ tên:</label>
-                        <input class="form-control" type="text" name="name" id="name" size="45px">
-                        <div style="color: red" th:field="*{name}"></div>
+                        <span>Họ tên:</span>
+                        <input class="form-control" type="text" th:field="*{name}" size="45px">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Ngày sinh:</label>
+                        <span>Ngày sinh:</span>
                         <input type="date"  size="45px" class="text-center form-control" th:field="*{dayOfBirth}">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Giới tính:</label>
-                        <input required type="text" size="45px" class="form-control" th:field="*{gender}">
+                        <span>Giới tính:</span>
+                        <select th:field="*{gender}" style="width: 100%" class="form-select-lg text-center">
+                            <option th:value="1">Nam</option>
+                            <option th:value="0">Nữ</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Số CMND:</label>
+                        <span>Số CMND:</span>
                         <input type="text" size="45px" class="form-control" th:field="*{idCard}">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Số điện thoại:</label>
+                        <span>Số điện thoại:</span>
                         <input type="text" size="45px" class="form-control" th:field="*{phoneNumber}">
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                        <label>Email:</label>
+                        <span>Email:</span>
                         <input type="text" size="45px" class="form-control" th:field="*{email}">
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                        <label>Địa chỉ:</label>
+                        <span>Địa chỉ:</span>
                         <input size="45px" class="form-control" th:field="*{address}">
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="text-center">
-                        <input class="form-control btn-success" style="width: 300px" type="submit"
+                    <td colspan="2" class="d-flex justify-content-center">
+                        <input class="form-control btn-success text-center" style="width: 300px" type="submit"
                                value="Thêm mới khách hàng">
                     </td>
                 </tr>

@@ -11,48 +11,77 @@
         <h1>Sửa thông tin khách hàng</h1>
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
-            <table>
+            <table class="form-control-lg table table-success table-striped">
                 <tr>
-                    <td>Mã khách hàng:</td>
-                    <input type="hidden" th:field="*{id}">
-                </tr>
-                <tr>
-                    <td>Loại khách:</td>
                     <td>
-                        <input type="text" th:field="*{customerType}">
+                        <span>Mã khách hàng:</span>
+                        <input class="form-control" type="text" readonly th:field="*{id}">
                     </td>
                 </tr>
                 <tr>
-                    <td>Họ tên:</td>
-                    <td><input type="text" th:field="*{name}"></td>
+                    <td>
+                        <label>Loại khách:</label>
+                        <div class="form-control" size="45px">
+                            <select th:field="*{customerType}" style="width: 100%" class="form-select-lg text-center">
+                                <option th:value="1">Diamond</option>
+                                <option th:value="2">Platinium</option>
+                                <option th:value="3">Gold</option>
+                                <option th:value="4">Silver</option>
+                                <option th:value="5">Member</option>
+                            </select>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Ngày sinh:</td>
-                    <td><input type="text" th:field="*{dayOfBirth}"></td>
+                    <td>
+                        <span>Họ tên:</span>
+                        <input  class="form-control" type="text" th:field="*{name}">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Giới tính:</td>
-                    <td><input type="text" th:field="*{gender}"></td>
+                    <td>
+                        <span>Ngày sinh:</span>
+                        <input  class="form-control" type="text" th:field="*{dayOfBirth}">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Số CMND:</td>
-                    <td><input type="text" th:field="*{idCard}"></td>
+                    <td>
+                        <label>Giới tính:</label>
+                        <select th:field="*{gender}" style="width: 100%" class="form-select-lg text-center">
+                            <option th:value="1">Nam</option>
+                            <option th:value="0">Nữ</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Số điện thoại:</td>
-                    <td><input type="text" th:field="*{phoneNumber}"></td>
+                    <td>
+                        <span>Số CMND:</span>
+                        <input  class="form-control" type="text" th:field="*{idCard}">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}"></td>
+                    <td>
+                        <span>Số điện thoại:</span>
+                        <input  class="form-control" type="text" th:field="*{phoneNumber}">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Địa chỉ:</td>
-                    <td><input type="text" th:field="*{address}"></td>
+                    <td>
+                        <span>Email:</span>
+                        <input  class="form-control" type="text" th:field="*{email}">
+                    </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><input type="submit" value="Sửa thông tin khách hàng"></td>
+                    <td>
+                        <span>Địa chỉ:</span>
+                        <input  class="form-control" type="text" th:field="*{address}">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="d-flex justify-content-center">
+                        <input class="form-control btn-success text-center" style="width: 300px" type="submit"
+                               value="Sửa thông tin khách hàng">
+                    </td>
                 </tr>
             </table>
         </fieldset>
