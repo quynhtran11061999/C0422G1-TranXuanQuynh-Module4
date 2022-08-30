@@ -10,4 +10,6 @@ public interface ICustomerService {
     Customer findById(int id);
 
     void save(Customer book);
+
+    void delete(int id);
 }

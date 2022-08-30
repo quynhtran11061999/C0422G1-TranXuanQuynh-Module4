@@ -15,15 +15,15 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
-    private ICustomerService iCustomerServicel;
+    private ICustomerService iCustomerService;
 
     @Autowired
     private ICustomerTypeService customerTypeService;
 
     @GetMapping("/list")
     public String goListCustomer(Model model){
-        List<Customer> customers = this.iCustomerServicel.findAll();
-        model.addAttribute("customerList",this.iCustomerServicel.findAll());
+        List<Customer> customers = this.iCustomerService.findAll();
+        model.addAttribute("customerList",this.iCustomerService.findAll());
         return "customer/list";
     }
 
@@ -34,21 +34,28 @@ public class CustomerController {
     }
     @GetMapping("/showUpdate")
     public String showUpdate(@RequestParam int id,Model model){
-        model.addAttribute("customer",this.iCustomerServicel.findById(id));
+        model.addAttribute("customer",this.iCustomerService.findById(id));
         return "customer/edit";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes){
-        this.iCustomerServicel.save(customer);
+        this.iCustomerService.save(customer);
         redirectAttributes.addFlashAttribute("message","Thêm mới thành công!!!");
         return "redirect:/customer/list";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Customer customer,RedirectAttributes redirectAttributes){
-        this.iCustomerServicel.save(customer);
+        this.iCustomerService.save(customer);
         redirectAttributes.addFlashAttribute("mess","Sửa thông tin thành công!!!");
+        return "redirect:/customer/list";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
+        this.iCustomerService.delete(id);
+        redirectAttributes.addFlashAttribute("mes", "Xóa thành công!!!");
         return "redirect:/customer/list";
     }
 }
