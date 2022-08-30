@@ -20,7 +20,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
-        return iProductRepository.findById(id);
+    public Product findById(Long id) {
+        return iProductRepository.findById(id).orElse(null);
     }
 }

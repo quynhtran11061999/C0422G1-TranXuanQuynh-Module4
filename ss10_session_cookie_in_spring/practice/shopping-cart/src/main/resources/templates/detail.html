@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Detail</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
@@ -11,19 +12,19 @@
             <h1>Chi tiết sản phầm</h1>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 th:text="${product.name}" class="card-title"></h5>
-                    <p th:text="${product.price}" class="card-text"></p>
-                    <p th:text="${product.description}" class="card-text"></p>
-                    <a th:href="@{/add(id=${product.id},expression='+')}" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                    <h5 class="card-title">Tên sản phẩm: <span th:text="${product.name}"></span></h5>
+                    <p class="card-text">Giá: <span th:text="${product.price}"></span></p>
+                    <p class="card-text">Mô tả sản phầm: <span th:text="${product.productDescriptions}" ></span></p>
+                    <a th:href="@{/add(id=${product.id})}" class="btn btn-primary">Thêm vào giỏ hàng</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

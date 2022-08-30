@@ -9,5 +9,5 @@ public interface IProductService {
 
     List<Product> findAll();
 
-    Optional<Product> findById(Long id);
+    Product findById(Long id);
 }

@@ -31,7 +31,7 @@ public class ProductController {
         return "list";
     }
 
-    @GetMapping("detail")
+    @GetMapping("/detail")
     public String goDetailPage(Model model, @RequestParam Long id) {
         model.addAttribute("product", this.iProductService.findById(id));
         return "detail";
@@ -44,5 +44,13 @@ public class ProductController {
         model.addAttribute("cart",cart);
         model.addAttribute("total",total);
         return "cart";
+    }
+
+    @GetMapping("/add")
+    public String add(@RequestParam Long id,
+                             @SessionAttribute("cart") Map<Product, Integer> cart) {
+        Product product = this.iProductService.findById(id);
+        this.iCartService.add(cart, product);
+        return "redirect:/cart";
     }
 }
