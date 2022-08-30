@@ -11,7 +11,7 @@ public interface ICustomerService {
 
     Customer findById(int id);
 
-    void save(Customer book);
+    void save(Customer customer);
 
     void delete(int id);
 
