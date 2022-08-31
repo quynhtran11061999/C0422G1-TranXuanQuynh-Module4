@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import com.codegym.model.facility.Facility;
 import com.codegym.service.facility.IFacilityService;
 import com.codegym.service.facility.IFacilityTypeService;
 import com.codegym.service.facility.IRentTypeService;
@@ -25,5 +26,11 @@ public class FacilityController {
     public String goListFacility(Model model){
         model.addAttribute("facilityList",this.iFacilityService.findAll());
         return "facility/list";
+    }
+
+    @GetMapping("/showAdd")
+    public String showAdd(Model model){
+        model.addAttribute("facility", new Facility());
+        return "facility/add";
     }
 }

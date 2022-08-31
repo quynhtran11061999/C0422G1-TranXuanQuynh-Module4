@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <title>Add Service</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -8,78 +8,79 @@
 <header th:replace="~{layout/header::header}"></header>
 <div class="container">
     <h1>Thêm mới dịch vụ</h1>
-    <form action="/furama?action=addService" method="post">
+    <form action="/furama?action=addService" method="post" th:object="${facility}">
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
             <table class="form-control-lg table table-success table-striped">
                 <tr>
                     <td>
-                        <select class="form-select-lg text-center" style="width: 100%" name="serviceTypeId" onchange="showServiceInput(this.value)">
-                            <option value="None">Chọn loại dịch vụ</option>
-                            <option value="1">Villa</option>
-                            <option value="2">House</option>
-                            <option value="3">Room</option>
+                        <select class="form-select-lg text-center" style="width: 100%" th:field="*{serviceTypeId}" onchange="showServiceInput(this.value)">
+                            <option th:value="None">Chọn loại dịch vụ</option>
+                            <option th:value="1">Villa</option>
+                            <option th:value="2">House</option>
+                            <option th:value="3">Room</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Tên dịch vụ:</label>
-                        <input class="form-control" type="text" name="name" size="45">
-                        <div style="color:red;">${name}</div>
+                        <input class="form-control" type="text" th:field="*{name}" size="45">
                     </td>
                 </tr>
                 <tr>
                     <td><label>Diện tích sử dụng:</label>
-                        <input class="form-control" type="text" name="area" size="45">
-                        <div style="color: red">${area}</div>
+                        <input class="form-control" type="text" th:field="*{area}" size="45">
                     </td>
                 </tr>
                 <tr>
                     <td><label>Chi phí thuê:</label>
-                        <input class="form-control" type="text" name="cost" size="15">
-                        <div style="color: red">${cost1}</div>
+                        <input class="form-control" type="text" th:field="*{cost}" size="15">
                     </td>
                 </tr>
                 <tr>
                     <td><label>Số lượng người tối đa:</label>
-                        <input class="form-control" type="text" name="maxPeople" size="15" >
+                        <input class="form-control" type="text" th:field="*{maxPeople}" size="15" >
                     </td>
                 </tr>
                 <tr>
                     <td><label>Kiểu thuê:</label>
-                        <input class="form-control" type="text" name="rentTypeId" size="15">
+                        <select th:field="*{rentTypeId}" style="width: 100%" class="form-select-lg text-center">
+                            <option th:value="1">year</option>
+                            <option th:value="2">month</option>
+                            <option th:value="3">day</option>
+                            <option th:value="4">hour</option>
+                        </select>
                     </td>
                 </tr>
 
                 <tr id="s1" style="display: none">
                     <td><label>Tiêu chuẩn phòng:</label>
-                        <input class="form-control" type="text" name="standardRoom" size="15">
+                        <input class="form-control" type="text" th:field="*{standardRoom}" size="15">
                     </td>
                 </tr>
 
                 <tr id="s2" style="display: none">
                     <td><label>Mô tả tiện nghi khác:</label>
-                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15">
+                        <input class="form-control" type="text" th:field="*{descriptionOfAmenities}" size="15">
                     </td>
                 </tr>
 
                 <tr id="s3" style="display: none">
                     <td><label>Diện tích hồ bơi:</label>
-                        <input class="form-control" type="text" name="poolArea" size="15" value="0">
+                        <input class="form-control" type="text" th:field="*{poolArea}" size="15" value="0">
                     </td>
                 </tr>
 
                 <tr id="s4" style="display: none">
                     <td><label>Số tầng:</label>
-                        <input class="form-control" type="text" name="numberOfFloors" size="15" value="0">
-                        <div style="color: red">${numberOfFloors}</div>
+                        <input class="form-control" type="text" th:field="*{maxPeople}" size="15" value="0">
                     </td>
                 </tr>
 
                 <tr id="s5" style="display: none">
                     <td><label>Dịch vụ miễn phí đi kèm:</label>
-                        <input class="form-control" type="text" name="freeService" size="15">
+                        <input class="form-control" type="text" th:field="*{freeService}" size="15">
                     </td>
                 </tr>
 

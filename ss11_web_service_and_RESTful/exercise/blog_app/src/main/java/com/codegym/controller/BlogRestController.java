@@ -24,6 +24,7 @@ public class BlogRestController {
 
     @Autowired
     private ICategoryService iCategoryService;
+
     @GetMapping(value = "/detail")
     public ResponseEntity<Blog> goDetail(@RequestParam int id) {
         Blog blog = this.iBlogService.findById(id);

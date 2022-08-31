@@ -23,13 +23,13 @@ public class Facility {
     private String name;
 
     @Column(name = "dien_tich")
-    private int area;
+    private Integer area;
 
     @Column(name = "chi_phi_thue")
-    private double cost;
+    private Double cost;
 
     @Column(name = "so_nguoi_toi_da")
-    private int maxPeople;
+    private Integer maxPeople;
 
     @ManyToOne
     @JoinColumn(name = "ma_kieu_thue",referencedColumnName = "ma_kieu_thue")
@@ -46,10 +46,10 @@ public class Facility {
     private String descriptionOfAmenities;
 
     @Column(name = "dien_tich_ho_boi")
-    private double poolArea;
+    private Double poolArea;
 
     @Column(name = "so_tang")
-    private int numberOfFloors;
+    private Integer numberOfFloors;
 
     @Column(name = "dich_vu_mien_phi_di_kem")
     private String freeService;
