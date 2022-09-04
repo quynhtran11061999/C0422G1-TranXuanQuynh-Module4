@@ -8,7 +8,7 @@
 <header th:replace="~{layout/header::header}"></header>
 <div class="container">
     <h1>Thêm mới dịch vụ</h1>
-    <form action="/furama?action=addService" method="post" th:object="${facility}">
+    <form action="/facility/add" method="post" th:object="${facility}">
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
             <table class="form-control-lg table table-success table-striped">

@@ -6,11 +6,12 @@
 </head>
 <body>
 <header th:replace="~{layout/header::header}"></header>
-<input type="text" hidden id="mess" value="${message}">
+<h5 style="color: green" th:text="${message}"></h5>
+<h5 style="color: green" th:text="${mess}"></h5>
+<h5 style="color: green" th:text="${mes}"></h5>
 <div class="row">
     <div class="col-lg-5">
         <h1>Danh sách dịch vụ</h1>
-<!--        <p style="color: red">${mesageAdd}</p>-->
     </div>
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
@@ -104,7 +105,7 @@
                     <td th:text="${facility.rentTypeId.rentTypeName}"></td>
                     <td th:text="${facility.serviceTypeId.facilityTypeName}"></td>
                     <td>
-                        <a href="/furama?action=showEditService&idService=${facility.idService}"
+                        <a th:href="@{/facility/showUpdate(id=${facility.idService})}"
                            class="text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
                                  class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -113,7 +114,7 @@
                         </a>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#deleteService"
-                                onclick="deleteService('${facility.idService}', '${facility.name}')">
+                                th:attr="onclick=|deleteService('${facility.idService}','${facility.name}')|">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
                                  class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -125,20 +126,44 @@
         </table>
     </div>
 </div>
-
+<div class="row">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/facility/list(page=${facilityList.number - 1},keyword = ${keywordValue})}"
+                   th:if="${facilityList.hasPrevious()}">
+                    Previous
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:text="${facilityList.number + 1}"></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">/</a></li>
+            <li class="page-item">
+                <a class="page-link" th:text="${facilityList.totalPages}" href="#"></a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/facility/list(page=${facilityList.number + 1},keyword = ${keywordValue})}"
+                   th:if="${facilityList.hasNext()}">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 <!-- Modal delete service -->
 <div class="modal fade" id="deleteService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="post" action="/furama?action=deleteService">
+    <form method="post" action="/facility/delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel1">Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Bạn có muốn xóa <span id="deleteNameService"></span> !!
-                    <input type="hidden" id="deleteIdService" name="id">
-                </div>
+                <b class="ml-5px">ID :</b>
+                <input type="text" readonly name="id" id="id" class="form-control"><br>
+                <b class="ml-5px">Tên khách hàng :</b>
+                <input type="text" readonly name="name" id="name" class="form-control"><br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                     <button type="submit" class="btn btn-primary">Xóa</button>
@@ -147,50 +172,13 @@
         </div>
     </form>
 </div>
-
-<div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger">Thông báo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p id="message"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
     function deleteService(id, name) {
-        document.getElementById("deleteIdService").value = id;
-        document.getElementById("deleteNameService").innerText = name;
-    }
-
-    window.onload = function () {
-        let mess = document.getElementById("mess").value;
-        document.getElementById("message").innerText=mess;
-        if (mess != null && mess !== "") {
-            $(document).ready(function(){
-                    $('#modalId').modal("show")
-                }
-            )
-        }
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
     }
 </script>
 <footer th:replace="~{layout/footer::footer}"></footer>
 <script src="/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#tableService').dataTable({
-            "dom": "lrtip",
-            "lengthChange": false,
-            "pageLength": 5
-        });
-    });
-</script>
 </body>
 </html>

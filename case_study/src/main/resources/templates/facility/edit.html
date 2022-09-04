@@ -5,96 +5,94 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-<%@ include file="../common/include/navbar.jsp" %>
+<header th:replace="~{layout/header::header}"></header>
 <div class="container-fluid">
     <h1>Sửa thông tin dịch vụ</h1>
-    <form action="/furama?action=editService" method="post">
+    <form action="/facility/update" method="post" th:object="${facility}" onchange="showServiceInput(this.value)">
         <fieldset>
             <legend>Thông tin dịch vụ</legend>
-            <p style="color:red;">${mesageEdit}</p>
-            <table class="form-control-lg">
+            <table class="form-control-lg table table-success table-striped">
+                <tr>
+                    <td><span>Mã khách hàng:</span>
+                        <input readonly class="form-control" type="text" th:field="*{idService}">
+                    </td>
+                </tr>
                 <tr>
                     <td>
-                        <select class="form-select-lg" name="serviceTypeId">
-                            <th:each var="facilityTypes" items="${facilityTypes}">
-                                <th:choose>
-                                    <th:when test="${facilityTypes.facilityTypeId==facility.idService}">
-                                        <option value="${facilityTypes.facilityTypeId}"
-                                                selected>${facilityTypes.facilityTypeName}</option>
-                                    </th:when>
-                                    <th:otherwise>
-                                        <option value="${facilityTypes.facilityTypeId}">${facilityTypes.facilityTypeName}</option>
-                                    </th:otherwise>
-                                </th:choose>
-                            </th:each>
+                        <select class="form-select-lg text-center" style="width: 100%" th:field="*{serviceTypeId}">
+                            <option th:value="1">Villa</option>
+                            <option th:value="2">House</option>
+                            <option th:value="3">Room</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Mã khách hàng:</label>
-                        <input readonly class="form-control" type="text" name="facilityId" size="45"
-                               value="${facility.idService}">
+                    <td>
+                        <span>Tên dịch vụ:</span>
+                        <input class="form-control" type="text" th:field="*{name}">
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Tên dịch vụ:</label>
-                        <input class="form-control" type="text" name="name" size="45" value="${facility.name}">
+                    <td>
+                        <span>Diện tích sử dụng:</span>
+                        <input class="form-control" type="text" th:field="*{area}">
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Diện tích sử dụng:</label>
-                        <input class="form-control" type="text" name="area" size="45" value="${facility.area}">
+                    <td>
+                        <span>Chi phí thuê:</span>
+                        <input class="form-control" type="text" th:field="*{cost}">
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Chi phí thuê:</label>
-                        <input class="form-control" type="text" name="cost" size="15" value="${facility.cost}">
+                    <td>
+                        <span>Số lượng người tối đa:</span>
+                        <input class="form-control" type="text" th:field="*{maxPeople}">
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Số lượng người tối đa:</label>
-                        <input class="form-control" type="text" name="maxPeople" size="15"
-                               value="${facility.maxPeople}">
+                    <td>
+                        <span>Kiểu thuê:</span>
+                        <select th:field="*{rentTypeId}" style="width: 100%" class="form-select-lg text-center">
+                            <option th:value="1">year</option>
+                            <option th:value="2">month</option>
+                            <option th:value="3">day</option>
+                            <option th:value="4">hour</option>
+                        </select>
                     </td>
                 </tr>
-                <tr>
-                    <td><label>Kiểu thuê:</label>
-                        <input class="form-control" type="text" name="rentTypeId" size="15"
-                               value="${facility.rentTypeId}">
-                    </td>
-                </tr>
-
                 <tr id="s1">
-                    <td><label>Tiêu chuẩn phòng:</label>
-                        <input class="form-control" type="text" name="standardRoom" size="15"
-                               value="${facility.standardRoom}">
+                    <td>
+                        <span>Tiêu chuẩn phòng:</span>
+                        <input class="form-control" type="text" th:field="*{standardRoom}">
                     </td>
                 </tr>
 
                 <tr id="s2">
-                    <td><label>Mô tả tiện nghi khác:</label>
-                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15"
-                               value="${facility.descriptionOfAmenities}">
+                    <td>
+                        <span>Mô tả tiện nghi khác:</span>
+                        <input class="form-control" type="text" th:field="*{descriptionOfAmenities}">
                     </td>
                 </tr>
 
                 <tr id="s3">
-                    <td><label>Diện tích hồ bơi:</label>
-                        <input class="form-control" type="text" name="poolArea" size="15" value="${facility.poolArea}">
+                    <td>
+                        <span>Diện tích hồ bơi:</span>
+                        <input class="form-control" type="text" th:field="*{poolArea}">
                     </td>
                 </tr>
 
                 <tr id="s4">
-                    <td><label>Số tầng:</label>
-                        <input class="form-control" type="text" name="numberOfFloors" size="15"
-                               value="${facility.numberOfFloors}">
+                    <td>
+                        <span>Số tầng:</span>
+                        <input class="form-control" type="text" th:field="*{numberOfFloors}">
                     </td>
                 </tr>
 
                 <tr id="s5">
-                    <td><label>Dịch vụ miễn phí đi kèm:</label>
-                        <input class="form-control" type="text" name="freeService" size="15"
-                               value="${facility.freeService}">
+                    <td>
+                        <span>Dịch vụ miễn phí đi kèm:</span>
+                        <input class="form-control" type="text" th:field="*{freeService}">
                     </td>
                 </tr>
 
@@ -107,7 +105,41 @@
         </fieldset>
     </form>
 </div>
-<%@ include file="../common/include/footer.jsp" %>
+<footer th:replace="~{layout/footer::footer}"></footer>
 <script src="/js/bootstrap.min.js"></script>
+<script>
+    function showServiceInput(value) {
+        switch (value) {
+            case "None":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "1":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "table-row";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "2":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "3":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "table-row";
+                break;
+        }
+    }
+</script>
 </body>
 </html>

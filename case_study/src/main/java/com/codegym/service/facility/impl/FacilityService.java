@@ -6,6 +6,8 @@ import com.codegym.repository.facility.IFacilityRepository;
 import com.codegym.service.facility.IFacilityService;
 import com.codegym.service.facility.IFacilityTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +35,10 @@ public class FacilityService implements IFacilityService {
     @Override
     public void delete(int id) {
         this.iFacilityRepository.delete(findById(id));
+    }
+
+    @Override
+    public Page<Facility> findAllByNameContaining(String name, Pageable pageable) {
+        return this.iFacilityRepository.findAllByNameContaining(name, pageable);
     }
 }
