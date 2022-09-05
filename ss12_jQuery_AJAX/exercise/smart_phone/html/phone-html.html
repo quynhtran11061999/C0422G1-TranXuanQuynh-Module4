@@ -6,6 +6,26 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+<table>
+    <tr>
+        <td>Producer:</td>
+        <td><input type="text" id="producer" placeholder="producer"></td>
+    </tr>
+    <tr>
+        <td>Model:</td>
+        <td><input type="text" id="model" placeholder="model"></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" id="price" placeholder="price"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button type="button" id="create">Save</button>
+        </td>
+    </tr>
+</table>
 <!-- Just an image -->
 <div class="container mt-4">
     <div class="row w-50 mx-auto">
@@ -55,7 +75,37 @@
 </div>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.6.1.min.js"></script>
-<script>
+<script type="text/javascript">
+    $("#create").click(function () {
+        let model = $('#model').val();
+        let price = $('#price').val();
+        let producer = $('#producer').val();
+
+        let newSmartphone = {
+            model: model,
+            price: price,
+            producer: producer
+        };
+        console.log(newSmartphone);
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            //tên API
+            data: JSON.stringify(newSmartphone),
+            url: "http://localhost:8080/phoneRest/create",
+            success: function (resultSuccess) {
+                alert('register successfully!')
+                getSmartphone(curPage)
+            },
+            error: function (resultError) {
+                alert('error');
+            }
+        });
+    });
+
 
     let curPage = 0;
 
@@ -76,12 +126,14 @@
                         <td>${phoneList[i].producer}</td>
                         <td>
                             <button class="btn btn-primary">
-                            <a class="text-white text-decoration-none" href="#">Update</a>
+                            <a class="text-white text-decoration-none" href="#"
+                            onclick="update('${phoneList[i].id}')">Update</a>
                             </button>
                         </td>
                         <td>
                             <button class="btn btn-primary">
-                            <a class="text-white text-decoration-none" href="#">Delete</a>
+                             <a class="text-white text-decoration-none" href="#"
+                             onclick="deletePhone('${phoneList[i].id}')">Delete</a>
                             </button>
                         </td>
                     </tr>`;
@@ -107,35 +159,75 @@
     // Call first
     getPageStudent(curPage);
 
-    $("#btnCreate").click(function () {
-        let nameStudent = $("#inputName").val();
-        let dOBStudent = $("#inputDateOfBirth").val();
-        let selectClass = $("#selectClass").val();
 
-        let studentObj = {
-            name: nameStudent,
-            dateOfBirth: dOBStudent,
-            classCG: {
-                id: 23
-            }
-        };
-
+    function deletePhone(id) {
         $.ajax({
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            type: "POST", //GET, DELETE, PUT...
-            url: "http://localhost:8080/studentRestMomo/create",
-            data: JSON.stringify(studentObj),
-            success: function (resultSuccess) {
-                alert('register successfully!')
+            type: "POST",
+            url: "http://localhost:8080/phoneRest/delete/" + id,
+            success: function (phonePage) {
+                curPage = 0;
+                getPhonePage(curPage);
             },
             error: function (resultError) {
                 alert('error');
             }
         });
-    });
+    }
+
+
+
+    function update(id) {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET",
+            url: "http://localhost:8080/phoneRest/update/" + id,
+            success: function (phone) {
+                $('#idUpdate').val(phone.id);
+                $('#nameUpdate').val(phone.name);
+                $('#producerUpdate').val(phone.producer);
+                $('#modelUpdate').val(phone.model);
+                $('#priceUpdate').val(phone.price);
+            },
+            error: function (resultError) {
+                alert('error');
+            }
+        });
+    }
+
+    $("#saveUpdate").click(function (id) {
+
+        let name = $('#nameUpdate').val();
+        let producer = $('#producerUpdate').val();
+        let model = $('#modelUpdate').val();
+        let price = $('#priceUpdate').val();
+        let newSmartphone = {
+            name: name,
+            producer: producer,
+            model: model,
+            price: price
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "PUT",
+            data: JSON.stringify(newSmartphone),
+            url: "http://localhost:8080/phoneRest/update/" + id,
+            success: function (phonePage) {
+            },
+            error: function (resultError) {
+                alert('error');
+            }
+        });
+    })
 </script>
 </body>
 </html>

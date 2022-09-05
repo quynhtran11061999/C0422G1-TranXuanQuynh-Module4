@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/phoneRest")
@@ -28,7 +30,28 @@ public class PhoneController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<Phone> save(@RequestBody Phone phone){
-        return new ResponseEntity<>(this.iPhoneService.save(phone), HttpStatus.OK);
+    public ResponseEntity<Void> createPhone(@RequestBody Phone phone){
+        this.iPhoneService.save(phone);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<Void> goDelete(@PathVariable Integer id) {
+        iPhoneService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/update/{id}")
+    public ResponseEntity<?> goUpdate(@PathVariable Integer id) {
+        Phone phone = iPhoneService.findById(Integer.valueOf(id));
+        return new ResponseEntity<>(phone, HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Phone> update(@RequestBody Phone phone, @RequestParam Integer id) {
+        phone.setId(phone.getId());
+        iPhoneService.save(phone);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
