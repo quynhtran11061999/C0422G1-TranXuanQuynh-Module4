@@ -127,7 +127,7 @@
                         <td>
                             <button class="btn btn-primary">
                             <a class="text-white text-decoration-none" href="#"
-                            onclick="update('${phoneList[i].id}')">Update</a>
+                             onclick="updatePhone(${phoneList[i].id})">Update</a>
                             </button>
                         </td>
                         <td>
@@ -178,37 +178,44 @@
         });
     }
 
+    function updatePhone(id) {
 
-
-    function update(id) {
         $.ajax({
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             type: "GET",
-            url: "http://localhost:8080/phoneRest/update/" + id,
-            success: function (phone) {
-                $('#idUpdate').val(phone.id);
-                $('#nameUpdate').val(phone.name);
-                $('#producerUpdate').val(phone.producer);
-                $('#modelUpdate').val(phone.model);
-                $('#priceUpdate').val(phone.price);
-            },
-            error: function (resultError) {
-                alert('error');
+            url: `http://localhost:8080/phoneRest/update/${id}`,
+            success: function (smartphoneOptional) {
+                $("#edit").html(getPhoneEdit(smartphoneOptional));
             }
         });
     }
 
-    $("#saveUpdate").click(function (id) {
+    function getPhoneEdit(phone) {
+        return  `<tr>
+                    <td><input value='${phone.producer}' id='producerEdit'></td>
+                 </tr>
+                 <tr>
+                     <td><input value='${phone.model}' id='modelEdit'></td>
+                 </tr>
+                 <tr>
+                     <td><input value='${phone.price}' id='priceEdit'></td>
+                 </tr>
+                 <tr>
+                     <td><button onclick="update(${phone.id})">Update</button>
+                 </td>
+                 </tr>`;
+    }
 
-        let name = $('#nameUpdate').val();
-        let producer = $('#producerUpdate').val();
-        let model = $('#modelUpdate').val();
-        let price = $('#priceUpdate').val();
-        let newSmartphone = {
-            name: name,
+
+    function update(id) {
+        let producer = $('#producerEdit').val();
+        let model = $('#modelEdit').val();
+        let price = $('#priceEdit').val();
+        let editSmartphone = {
+            id: id,
             producer: producer,
             model: model,
             price: price
@@ -218,16 +225,15 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            type: "PUT",
-            data: JSON.stringify(newSmartphone),
-            url: "http://localhost:8080/phoneRest/update/" + id,
-            success: function (phonePage) {
-            },
-            error: function (resultError) {
-                alert('error');
+            type: "POST",
+            url: `http://localhost:8080/phoneRest/update`,
+            data: JSON.stringify(editSmartphone),
+            success: function (resultSuccess) {
+                alert('Edit successfully!')
+                getSmartphone(curPage)
             }
         });
-    })
+    }
 </script>
 </body>
 </html>
