@@ -25,7 +25,7 @@ public class BlogController {
     @Autowired
     private ICategoryService iCategoryService;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String goList(Model model,
                          @PageableDefault(size = 3) Pageable pageable,
                          @RequestParam Optional<String> keyword) {
