@@ -1,18 +1,52 @@
-<div xmlns:th="http://www.thymeleaf.org"
-     style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+<!--<div xmlns:th="http://www.thymeleaf.org"-->
+<!--     -->
+<!--     style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">-->
 
-    <a th:href="@{/}">Home</a>
+<!--    <a th:href="@{/}">Home</a>-->
 
-    | &nbsp;
+<!--    | &nbsp;-->
 
-    <a th:href="@{/userInfo}">User Info</a>
+<!--    <a th:href="@{/userInfo}">User Info</a>-->
 
-    | &nbsp;
+<!--    | &nbsp;-->
 
-    <a th:href="@{/admin}">Admin</a>
+<!--    <a th:href="@{/admin}">Admin</a>-->
 
-    | &nbsp;
+<!--    | &nbsp;-->
 
-    <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>
+<!--    <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>-->
 
-</div>
+<!--</div>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+<body>
+<nav class="navbar navbar-light bg-dark">
+    <div class="text-white tex text-decoration-none">
+
+        <a th:href="@{/}" class="text-white tex text-decoration-none">Home</a>
+
+        | &nbsp;
+
+        <a th:href="@{/userInfo}" class="text-white tex text-decoration-none">User Info</a>
+
+        | &nbsp;
+
+        <a th:href="@{/admin}" class="text-white tex text-decoration-none">Admin</a>
+
+        | &nbsp;
+
+        <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}" class="text-white tex text-decoration-none">Logout</a>
+
+    </div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+</html>
