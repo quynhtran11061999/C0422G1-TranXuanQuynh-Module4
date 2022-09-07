@@ -60,20 +60,20 @@ public class BlogController {
     public String add(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         this.iBlogService.save(blog);
         redirectAttributes.addFlashAttribute("message", "Thêm mới thành công!!!");
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         this.iBlogService.save(blog);
         redirectAttributes.addFlashAttribute("mess", "Sửa thông tin thành công!!!");
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
         this.iBlogService.delete(id);
         redirectAttributes.addFlashAttribute("mes", "Xóa thành công!!!");
-        return "redirect:/";
+        return "redirect:/home";
     }
 }
