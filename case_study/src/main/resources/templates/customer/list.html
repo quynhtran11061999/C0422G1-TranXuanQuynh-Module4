@@ -79,7 +79,8 @@
         <table class="table table-success table-striped table-bordered" id="tableCustomer">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>STT</th>
+<!--                <th>ID</th>-->
                 <th>Loại khách</th>
                 <th>Họ tên</th>
                 <th>Ngày sinh</th>
@@ -92,8 +93,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="cus:${customerList}">
-                <td th:text="${cus.id}"></td>
+            <tr th:each="cus,status:${customerList}">
+<!--                <td th:text="${cus.id}"></td>-->
+                <td th:text="${status.count}"></td>
                 <td th:text="${cus.customerType.customerTypeName}"></td>
                 <td th:text="${cus.name}"></td>
                 <td th:text="${cus.dayOfBirth}"></td>

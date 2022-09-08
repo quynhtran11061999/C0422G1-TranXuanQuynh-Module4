@@ -41,12 +41,16 @@ public class FacilityController {
     @GetMapping("/showAdd")
     public String showAdd(Model model){
         model.addAttribute("facility", new Facility());
+        model.addAttribute("facilityTypeList",this.iFacilityTypeService.findAll());
+        model.addAttribute("rentTypeList",this.iRentTypeService.findAll());
         return "facility/add";
     }
 
     @GetMapping("/showUpdate")
     public String showUpdate(@RequestParam int id, Model model) {
         model.addAttribute("facility", this.iFacilityService.findById(id));
+        model.addAttribute("facilityTypeList",this.iFacilityTypeService.findAll());
+        model.addAttribute("rentTypeList",this.iRentTypeService.findAll());
         return "facility/edit";
     }
 

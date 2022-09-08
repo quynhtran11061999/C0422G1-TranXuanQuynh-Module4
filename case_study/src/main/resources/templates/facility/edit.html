@@ -20,9 +20,8 @@
                 <tr>
                     <td>
                         <select class="form-select-lg text-center" style="width: 100%" th:field="*{serviceTypeId}">
-                            <option th:value="1">Villa</option>
-                            <option th:value="2">House</option>
-                            <option th:value="3">Room</option>
+                            <option th:each="facilityType: ${facilityTypeList}"
+                                    th:value="${facilityType.facilityTypeId}" th:text="${facilityType.facilityTypeName}"></option>
                         </select>
                     </td>
                 </tr>
@@ -54,10 +53,8 @@
                     <td>
                         <span>Kiểu thuê:</span>
                         <select th:field="*{rentTypeId}" style="width: 100%" class="form-select-lg text-center">
-                            <option th:value="1">year</option>
-                            <option th:value="2">month</option>
-                            <option th:value="3">day</option>
-                            <option th:value="4">hour</option>
+                            <option th:each="rentType: ${rentTypeList}"
+                                    th:value="${rentType.rentTypeId}" th:text="${rentType.rentTypeName}"></option>
                         </select>
                     </td>
                 </tr>
@@ -98,7 +95,7 @@
 
                 <tr>
                     <td colspan="2" align="center">
-                        <input class="form-control" type="submit" value="Sửa thông tin dịch vụ"/>
+                        <input class="form-control btn-success" type="submit" value="Sửa thông tin dịch vụ"/>
                     </td>
                 </tr>
             </table>

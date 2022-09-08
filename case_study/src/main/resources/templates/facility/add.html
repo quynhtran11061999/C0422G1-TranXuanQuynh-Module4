@@ -15,10 +15,8 @@
                 <tr>
                     <td>
                         <select class="form-select-lg text-center" style="width: 100%" th:field="*{serviceTypeId}" onchange="showServiceInput(this.value)">
-                            <option th:value="None">Chọn loại dịch vụ</option>
-                            <option th:value="1">Villa</option>
-                            <option th:value="2">House</option>
-                            <option th:value="3">Room</option>
+                            <option th:each="facilityType: ${facilityTypeList}"
+                                    th:value="${facilityType.facilityTypeId}" th:text="${facilityType.facilityTypeName}"></option>
                         </select>
                     </td>
                 </tr>
@@ -46,10 +44,8 @@
                 <tr>
                     <td><label>Kiểu thuê:</label>
                         <select th:field="*{rentTypeId}" style="width: 100%" class="form-select-lg text-center">
-                            <option th:value="1">year</option>
-                            <option th:value="2">month</option>
-                            <option th:value="3">day</option>
-                            <option th:value="4">hour</option>
+                            <option th:each="rentType: ${rentTypeList}"
+                                    th:value="${rentType.rentTypeId}" th:text="${rentType.rentTypeName}"></option>
                         </select>
                     </td>
                 </tr>

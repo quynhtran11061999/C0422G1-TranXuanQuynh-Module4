@@ -75,7 +75,8 @@
         <table class="table table-success table-striped table-bordered table-responsive" id="tableService">
             <thead>
             <tr>
-                <th>Mã dịch vụ</th>
+                <th>STT</th>
+<!--                <th>Mã dịch vụ</th>-->
                 <th>Tên dịch vụ</th>
                 <th>Diện tích</th>
                 <th>Chi phí thuê</th>
@@ -91,8 +92,9 @@
             </tr>
             </thead>
             <tbody>
-                <tr th:each="facility:${facilityList}">
-                    <td th:text="${facility.idService}"></td>
+                <tr th:each="facility,status:${facilityList}">
+                    <td th:text="${status.count}"></td>
+<!--                    <td th:text="${facility.idService}"></td>-->
                     <td th:text="${facility.name}"></td>
                     <td th:text="${facility.area}"></td>
                     <td th:text="${facility.cost}"></td>

@@ -23,11 +23,8 @@
                         <label>Loại khách:</label>
                         <div class="form-control" size="45px">
                             <select th:field="*{customerType}" style="width: 100%" class="form-select-lg text-center">
-                                <option th:value="1">Diamond</option>
-                                <option th:value="2">Platinium</option>
-                                <option th:value="3">Gold</option>
-                                <option th:value="4">Silver</option>
-                                <option th:value="5">Member</option>
+                                <option th:each="customerType: ${customerTypeList}"
+                                        th:value="${customerType.id}" th:text="${customerType.customerTypeName}"></option>
                             </select>
                         </div>
                     </td>
@@ -36,12 +33,14 @@
                     <td>
                         <span>Họ tên:</span>
                         <input  class="form-control" type="text" th:field="*{name}">
+                        <div class="text-danger" th:errors="*{name}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Ngày sinh:</span>
                         <input  class="form-control" type="text" th:field="*{dayOfBirth}">
+                        <div class="text-danger" th:errors="*{dayOfBirth}"></div>
                     </td>
                 </tr>
                 <tr>
@@ -57,24 +56,28 @@
                     <td>
                         <span>Số CMND:</span>
                         <input  class="form-control" type="text" th:field="*{idCard}">
+                        <div class="text-danger" th:errors="*{idCard}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Số điện thoại:</span>
                         <input  class="form-control" type="text" th:field="*{phoneNumber}">
+                        <div class="text-danger" th:errors="*{phoneNumber}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Email:</span>
                         <input  class="form-control" type="text" th:field="*{email}">
+                        <div class="text-danger" th:errors="*{email}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Địa chỉ:</span>
                         <input  class="form-control" type="text" th:field="*{address}">
+                        <div class="text-danger" th:errors="*{address}"></div>
                     </td>
                 </tr>
                 <tr>
