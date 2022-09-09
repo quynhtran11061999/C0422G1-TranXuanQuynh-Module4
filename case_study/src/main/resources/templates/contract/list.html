@@ -49,7 +49,7 @@
                             data-bs-target="#addContact2">
                         +
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <button id="attachFacilityList" th:attr="onclick=|attachList('${contract.idContract}')|" type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#includedServices">
                         Danh sách các dịch vụ đi kèm
                     </button>
@@ -206,5 +206,39 @@
 </div>
 <footer th:replace="~{layout/footer::footer}"></footer>
 <script src="/js/bootstrap.min.js"></script>
+<script src="js/jquery-3.6.1.min.js"></script>
+<script>
+    function attachList(id) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/contractRest/attachFacility?id=" + id,
+            success: function (blogPage) {
+                let blogList = blogPage.content;
+                console.log(blogList);
+                let htmlStr = '';
+                for (let i = 0; i < blogList.length; i++) {
+                    htmlStr += `<tr>
+                        <td>${i + 1}</td>
+                        <td>${blogList[i].id}</td>
+                        <td>${blogList[i].title}</td>
+                        <td>${blogList[i].content}</td>
+                        <td>${blogList[i].category.categoryName}</td>
+                        <td>${blogList[i].author}</td>
+                        <td>
+                            <a href="#">Update</a>
+                        </td>
+                    </tr>`;
+                }
+
+                $("#bodyBlog").html(htmlStr);
+                console.log(htmlStr);
+            },
+            error: function (resultError) {
+
+            }
+        });
+    }
+
+</script>
 </body>
 </html>
