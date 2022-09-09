@@ -22,6 +22,6 @@ public class CustomerType {
     @Column(name = "ten_loai_khach")
     private String customerTypeName;
 
-    @OneToMany(mappedBy = "customerType", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "customerType")
     private List<Customer> customers;
 }

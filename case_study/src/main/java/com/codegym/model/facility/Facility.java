@@ -1,11 +1,13 @@
 package com.codegym.model.facility;
 
+import com.codegym.model.contract.Contract;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -53,4 +55,7 @@ public class Facility {
 
     @Column(name = "dich_vu_mien_phi_di_kem")
     private String freeService;
+
+    @OneToMany(mappedBy = "facility")
+    private List<Contract> contracts;
 }

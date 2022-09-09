@@ -22,6 +22,6 @@ public class FacilityType {
     @Column(name = "ten_loai_dich_vu")
     private String facilityTypeName;
 
-    @OneToMany(mappedBy = "serviceTypeId", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "serviceTypeId")
     private List<Facility> facilities;
 }

@@ -23,6 +23,6 @@ public class RentType {
     @Column(name = "ten_kieu_thue")
     private String rentTypeName;
 
-    @OneToMany(mappedBy = "rentTypeId", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "rentTypeId")
     private List<Facility> facilities;
 }

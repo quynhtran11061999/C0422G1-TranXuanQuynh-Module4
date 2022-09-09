@@ -1,0 +1,21 @@
+package com.codegym.service.contract.impl;
+
+import com.codegym.model.contract.AttachFacility;
+import com.codegym.model.contract.ContractDetail;
+import com.codegym.repository.contract.IAttachFacilityRepository;
+import com.codegym.service.contract.IAttachFacilityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AttachFacilityService implements IAttachFacilityService {
+    @Autowired
+    private IAttachFacilityRepository iAttachFacilityRepository;
+
+    @Override
+    public AttachFacility findByContractDetailId(Integer contractDetailId) {
+        return this.iAttachFacilityRepository.findAllByContractDetails_IdContractDetail(contractDetailId);
+    }
+}

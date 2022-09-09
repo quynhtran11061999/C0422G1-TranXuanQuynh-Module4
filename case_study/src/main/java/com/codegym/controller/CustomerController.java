@@ -57,7 +57,7 @@ public class CustomerController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("customerDto") @Valid CustomerDto customerDto,
+    public String add(@ModelAttribute @Valid CustomerDto customerDto,
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
         new CustomerDto().validate(customerDto, bindingResult);
