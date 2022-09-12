@@ -18,6 +18,8 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDto implements Validator {
+    private Integer id;
+
     @NotBlank(message = "Vui lòng nhập vào!!!")
     @Pattern(regexp = "[A-Za-z ]+", message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private String name;

@@ -17,6 +17,7 @@ import java.util.List;
 public class CustomerType {
     @Id
     @Column(name = "ma_loai_khach")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "ten_loai_khach")

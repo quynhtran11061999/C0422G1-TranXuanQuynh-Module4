@@ -1,5 +1,6 @@
 package com.codegym.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class AttachFacility {
     @Column(name = "trang_thai")
     private String status;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "attachFacility")
     List<ContractDetail> contractDetails;
 }

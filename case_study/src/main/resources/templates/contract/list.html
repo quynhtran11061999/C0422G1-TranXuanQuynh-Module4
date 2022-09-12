@@ -43,13 +43,19 @@
                 <td th:text="${contract.startDay}"></td>
                 <td th:text="${contract.endDay}"></td>
                 <td th:text="${contract.deposits}"></td>
-                <td>Chưa làm</td>
+                <th:block th:each="money:${total}">
+                    <th:block th:if="${money.getKey()==contract.idContract}">
+                        <td th:text="${money.getValue()}"></td>
+                    </th:block>
+                </th:block>
+<!--                <td>Chưa làm</td>-->
                 <td>
                     <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
                             data-bs-target="#addContact2">
                         +
                     </button>
-                    <button id="attachFacilityList" th:attr="onclick=|attachList('${contract.idContract}')|" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <button id="attachFacilityList" th:attr="onclick=|attachList('${contract.idContract}')|"
+                            type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#includedServices">
                         Danh sách các dịch vụ đi kèm
                     </button>
@@ -63,7 +69,8 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" th:href="@{/contract/list(page=${contractList.number - 1},keyword = ${keywordValue})}"
+                <a class="page-link"
+                   th:href="@{/contract/list(page=${contractList.number - 1},keyword = ${keywordValue})}"
                    th:if="${contractList.hasPrevious()}">
                     Previous
                 </a>
@@ -76,7 +83,8 @@
                 <a class="page-link" th:text="${contractList.totalPages}" href="#"></a>
             </li>
             <li class="page-item">
-                <a class="page-link" th:href="@{/contract/list(page=${contractList.number + 1},keyword = ${keywordValue})}"
+                <a class="page-link"
+                   th:href="@{/contract/list(page=${contractList.number + 1},keyword = ${keywordValue})}"
                    th:if="${contractList.hasNext()}">
                     Next
                 </a>
@@ -181,24 +189,17 @@
             </div>
             <div class="modal-body container-fluid">
                 <table class="table table-striped">
+                    <thead>
                     <tr>
+                        <th>STT</th>
                         <th>Tên dịch vụ đi kèm</th>
-                        <th>Đơn vị</th>
                         <th>Giá tiền</th>
+                        <th>Đơn vị</th>
+                        <th>Trạng thái</th>
                         <th>Số lượng</th>
                     </tr>
-                    <tr>
-                        <td>Karaoke</td>
-                        <td>Giờ</td>
-                        <td>5000</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>Thuê xe máy</td>
-                        <td>Giờ</td>
-                        <td>7000</td>
-                        <td>2</td>
-                    </tr>
+                    </thead>
+                    <tbody id="bodyContract"></tbody>
                 </table>
             </div>
         </div>
@@ -206,39 +207,34 @@
 </div>
 <footer th:replace="~{layout/footer::footer}"></footer>
 <script src="/js/bootstrap.min.js"></script>
-<script src="js/jquery-3.6.1.min.js"></script>
+<script src="/js/jquery-3.6.1.min.js"></script>
 <script>
     function attachList(id) {
         $.ajax({
             type: "GET",
             url: "http://localhost:8080/contractRest/attachFacility?id=" + id,
-            success: function (blogPage) {
-                let blogList = blogPage.content;
-                console.log(blogList);
+            success: function (contracDetail) {
+                console.log(contracDetail);
                 let htmlStr = '';
-                for (let i = 0; i < blogList.length; i++) {
+                for (let i = 0; i < contracDetail.length; i++) {
                     htmlStr += `<tr>
                         <td>${i + 1}</td>
-                        <td>${blogList[i].id}</td>
-                        <td>${blogList[i].title}</td>
-                        <td>${blogList[i].content}</td>
-                        <td>${blogList[i].category.categoryName}</td>
-                        <td>${blogList[i].author}</td>
-                        <td>
-                            <a href="#">Update</a>
-                        </td>
+                        <td>${contracDetail[i].attachFacility.nameAttachFacility}</td>
+                        <td>${contracDetail[i].attachFacility.cost}</td>
+                        <td>${contracDetail[i].attachFacility.unit}</td>
+                        <td>${contracDetail[i].attachFacility.status}</td>
+                        <td>${contracDetail[i].amount}</td>
                     </tr>`;
                 }
 
-                $("#bodyBlog").html(htmlStr);
+                $("#bodyContract").html(htmlStr);
                 console.log(htmlStr);
             },
             error: function (resultError) {
-
+                console.log("ngu")
             }
         });
     }
-
 </script>
 </body>
 </html>

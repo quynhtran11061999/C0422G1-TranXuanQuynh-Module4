@@ -52,7 +52,7 @@ public class CustomerController {
 
     @GetMapping("/showUpdate")
     public String showUpdate(@RequestParam int id, Model model) {
-        model.addAttribute("customer", this.iCustomerService.findById(id));
+        model.addAttribute("customerDto", this.iCustomerService.findById(id));
         return "customer/edit";
     }
 
@@ -72,7 +72,15 @@ public class CustomerController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
+    public String update(@ModelAttribute @Valid CustomerDto customerDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customerDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "customer/edit";
+        }
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto, customer);
         this.iCustomerService.save(customer);
         redirectAttributes.addFlashAttribute("mess", "Sửa thông tin thành công!!!");
         return "redirect:/customer/list";

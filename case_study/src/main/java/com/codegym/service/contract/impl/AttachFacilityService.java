@@ -11,11 +11,4 @@ import java.util.List;
 
 @Service
 public class AttachFacilityService implements IAttachFacilityService {
-    @Autowired
-    private IAttachFacilityRepository iAttachFacilityRepository;
-
-    @Override
-    public AttachFacility findByContractDetailId(Integer contractDetailId) {
-        return this.iAttachFacilityRepository.findAllByContractDetails_IdContractDetail(contractDetailId);
-    }
 }

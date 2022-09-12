@@ -17,6 +17,7 @@ import java.util.List;
 public class FacilityType {
     @Id
     @Column(name = "ma_loai_dich_vu")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int facilityTypeId;
 
     @Column(name = "ten_loai_dich_vu")

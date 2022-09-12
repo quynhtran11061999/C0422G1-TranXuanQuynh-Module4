@@ -7,7 +7,7 @@
 <body>
 <header th:replace="~{layout/header::header}"></header>
 <div class="container-fluid">
-    <form action="/customer/update" method="post" th:object="${customer}">
+    <form action="/customer/update" method="post" th:object="${customerDto}">
         <h1>Sửa thông tin khách hàng</h1>
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>

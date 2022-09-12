@@ -26,12 +26,10 @@ public class ContractRestController {
     private IContractDetailService contractDetailService;
 
     @GetMapping("/attachFacility")
-    public ResponseEntity<List<AttachFacility>> getAttachFacility(@RequestParam Integer id){
+    public ResponseEntity<List<ContractDetail>> getAttachFacility(@RequestParam Integer id){
+
         List<ContractDetail> contractDetailList = contractDetailService.findAllByContractId(id);
-        List<AttachFacility> attachFacilityList = new ArrayList<>();
-        for (ContractDetail c:contractDetailList){
-            attachFacilityList.add(this.attachFacilityService.findByContractDetailId(c.getIdContractDetail()));
-        }
-        return new ResponseEntity<>(attachFacilityList, HttpStatus.OK);
+
+        return new ResponseEntity<>(contractDetailList, HttpStatus.OK);
     }
 }

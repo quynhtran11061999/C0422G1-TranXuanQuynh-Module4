@@ -18,6 +18,7 @@ import java.util.List;
 public class RentType {
     @Id
     @Column(name = "ma_kieu_thue")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rentTypeId;
 
     @Column(name = "ten_kieu_thue")

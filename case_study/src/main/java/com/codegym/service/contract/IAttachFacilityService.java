@@ -6,5 +6,4 @@ import com.codegym.model.contract.ContractDetail;
 import java.util.List;
 
 public interface IAttachFacilityService {
-    AttachFacility findByContractDetailId(Integer contractDetailId);
 }
