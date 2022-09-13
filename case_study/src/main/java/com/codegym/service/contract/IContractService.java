@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface IContractService {
     Page<Contract> findAllByEndDayContaining(String endDay, Pageable pageable);
-    Page<ContractDto> findAllContractWithTotal(Pageable pageable);
+
 }

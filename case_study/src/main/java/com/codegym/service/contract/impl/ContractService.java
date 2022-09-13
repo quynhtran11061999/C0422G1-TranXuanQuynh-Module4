@@ -18,9 +18,4 @@ public class ContractService implements IContractService {
     public Page<Contract> findAllByEndDayContaining(String endDay, Pageable pageable) {
         return this.iContractRepository.findAllByEndDayContaining(endDay, pageable);
     }
-
-    @Override
-    public Page<ContractDto> findAllContractWithTotal(Pageable pageable) {
-        return this.iContractRepository.findAllContractWithTotal(pageable);
-    }
 }

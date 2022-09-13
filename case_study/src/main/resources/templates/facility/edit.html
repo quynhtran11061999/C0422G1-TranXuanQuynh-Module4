@@ -8,7 +8,7 @@
 <header th:replace="~{layout/header::header}"></header>
 <div class="container-fluid">
     <h1>Sửa thông tin dịch vụ</h1>
-    <form action="/facility/update" method="post" th:object="${facility}" onchange="showServiceInput(this.value)">
+    <form action="/facility/update" method="post" th:object="${facilityDto}" onchange="showServiceInput(this.value)">
         <fieldset>
             <legend>Thông tin dịch vụ</legend>
             <table class="form-control-lg table table-success table-striped">
@@ -29,18 +29,21 @@
                     <td>
                         <span>Tên dịch vụ:</span>
                         <input class="form-control" type="text" th:field="*{name}">
+                        <div class="text-danger" th:errors="*{name}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Diện tích sử dụng:</span>
                         <input class="form-control" type="text" th:field="*{area}">
+                        <div class="text-danger" th:errors="*{area}"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span>Chi phí thuê:</span>
                         <input class="form-control" type="text" th:field="*{cost}">
+                        <div class="text-danger" th:errors="*{cost}"></div>
                     </td>
                 </tr>
                 <tr>
@@ -62,6 +65,7 @@
                     <td>
                         <span>Tiêu chuẩn phòng:</span>
                         <input class="form-control" type="text" th:field="*{standardRoom}">
+                        <div class="text-danger" th:errors="*{standardRoom}"></div>
                     </td>
                 </tr>
 
@@ -69,6 +73,7 @@
                     <td>
                         <span>Mô tả tiện nghi khác:</span>
                         <input class="form-control" type="text" th:field="*{descriptionOfAmenities}">
+                        <div class="text-danger" th:errors="*{descriptionOfAmenities}"></div>
                     </td>
                 </tr>
 
@@ -76,6 +81,7 @@
                     <td>
                         <span>Diện tích hồ bơi:</span>
                         <input class="form-control" type="text" th:field="*{poolArea}">
+                        <div class="text-danger" th:errors="*{poolArea}"></div>
                     </td>
                 </tr>
 
@@ -83,6 +89,7 @@
                     <td>
                         <span>Số tầng:</span>
                         <input class="form-control" type="text" th:field="*{numberOfFloors}">
+                        <div class="text-danger" th:errors="*{numberOfFloors}"></div>
                     </td>
                 </tr>
 
@@ -90,6 +97,7 @@
                     <td>
                         <span>Dịch vụ miễn phí đi kèm:</span>
                         <input class="form-control" type="text" th:field="*{freeService}">
+                        <div class="text-danger" th:errors="*{freeService}"></div>
                     </td>
                 </tr>
 

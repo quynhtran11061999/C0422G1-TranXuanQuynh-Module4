@@ -8,6 +8,4 @@ import java.util.List;
 public interface IContractDetailRepository extends JpaRepository<ContractDetail, Integer> {
 
     List<ContractDetail> findAllByContract_IdContract(Integer id);
-
-
 }

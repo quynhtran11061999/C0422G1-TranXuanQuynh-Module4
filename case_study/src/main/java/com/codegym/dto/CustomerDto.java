@@ -32,7 +32,8 @@ public class CustomerDto implements Validator {
     private String idCard;
 
     @NotBlank(message = "Vui lòng nhập vào!!!")
-    @Pattern(regexp = "^((090)|(091)|(\\\\(84\\\\)\\\\+90)|(\\\\(84\\\\)\\\\+91))[0-9]{7}$",message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
+    @Pattern(regexp = "^((090)|(091)|(\\\\(84\\\\)\\\\+90)|(\\\\(84\\\\)\\\\+91))[0-9]{7}$",
+            message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private String phoneNumber;
 
     @Email(message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
