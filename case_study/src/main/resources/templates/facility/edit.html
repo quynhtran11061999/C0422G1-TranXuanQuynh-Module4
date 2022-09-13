@@ -10,10 +10,11 @@
     <h1>Sửa thông tin dịch vụ</h1>
     <form action="/facility/update" method="post" th:object="${facilityDto}" onchange="showServiceInput(this.value)">
         <fieldset>
-            <legend>Thông tin dịch vụ</legend>
+            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
             <table class="form-control-lg table table-success table-striped">
                 <tr>
-                    <td><span>Mã khách hàng:</span>
+                    <td>
+                        <span>Mã khách hàng:</span>
                         <input readonly class="form-control" type="text" th:field="*{idService}">
                     </td>
                 </tr>
@@ -102,8 +103,8 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2" align="center">
-                        <input class="form-control btn-success" type="submit" value="Sửa thông tin dịch vụ"/>
+                    <td colspan="2" class="d-flex justify-content-center">
+                        <input class="form-control btn-success text-center" style="width: 300px" type="submit" value="Sửa thông tin dịch vụ"/>
                     </td>
                 </tr>
             </table>

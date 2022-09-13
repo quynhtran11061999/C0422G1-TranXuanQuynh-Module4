@@ -12,9 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,11 +56,11 @@ public class ContractController {
         model.addAttribute("keywordValue",keywordValue);
             return "contract/list";
     }
-//    @GetMapping("/list")
-//    public String goListContract(Model model,
-//                                 @PageableDefault(size = 5) Pageable pageable) {
-//        Page<ContractDto> contractPage = this.iContractService.findAllContractWithTotal(pageable);
-//        model.addAttribute("contractPage", contractPage);
-//        return "contract/list";
-//    }
+
+    @PostMapping("/add")
+    public String add(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes){
+            this.iContractService.save(contract);
+            redirectAttributes.addFlashAttribute("mess","Thêm mới hợp đồng thành công");
+        return "contract/list";
+    }
 }

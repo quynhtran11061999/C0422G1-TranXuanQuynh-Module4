@@ -25,7 +25,7 @@ public class Facility {
     private String name;
 
     @Column(name = "dien_tich")
-    private Integer area;
+    private Double area;
 
     @Column(name = "chi_phi_thue")
     private Double cost;

@@ -26,7 +26,7 @@ public class FacilityDto implements Validator {
     private String name;
 
     @Min(value = 0,message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
-    private Integer area;
+    private Double area;
 
     @Min(value = 0,message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private Double cost;
@@ -49,7 +49,7 @@ public class FacilityDto implements Validator {
     @Min(value = 0,message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private Double poolArea;
 
-    @Min(value = 0,message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
+    @Min(value = 1,message = "Nhập sai định dạng. Vui lòng nhập lại!!!")
     private Integer numberOfFloors;
 
     @NotNull

@@ -18,4 +18,9 @@ public class ContractService implements IContractService {
     public Page<Contract> findAllByEndDayContaining(String endDay, Pageable pageable) {
         return this.iContractRepository.findAllByEndDayContaining(endDay, pageable);
     }
+
+    @Override
+    public void save(Contract contract) {
+        this.iContractRepository.save(contract);
+    }
 }
