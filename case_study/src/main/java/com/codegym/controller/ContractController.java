@@ -1,20 +1,27 @@
 package com.codegym.controller;
 
+import com.codegym.dto.ContractDto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.contract.ContractDetail;
+import com.codegym.model.customer.Customer;
+import com.codegym.model.employee.Employee;
+import com.codegym.model.facility.Facility;
 import com.codegym.service.contract.IContractService;
 import com.codegym.service.customer.ICustomerService;
 import com.codegym.service.employee.IEmployeeService;
 import com.codegym.service.facility.IFacilityService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -57,10 +64,40 @@ public class ContractController {
             return "contract/list";
     }
 
-    @PostMapping("/add")
-    public String add(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes){
-            this.iContractService.save(contract);
-            redirectAttributes.addFlashAttribute("mess","Thêm mới hợp đồng thành công");
-        return "contract/list";
+    @GetMapping("/showAdd")
+    public String showAdd(Model model){
+            model.addAttribute("contractDto",new Contract());
+            model.addAttribute("customer",new Customer());
+            model.addAttribute("facility",new Facility());
+            model.addAttribute("employee",new Employee());
+            return "contract/add";
+    }
+
+    @PostMapping("/createContract")
+    public String createContract(@ModelAttribute @Valid ContractDto contractDto,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes rd) {
+        new ContractDto().validate(contractDto, bindingResult);
+        if (bindingResult.hasErrors()){
+            return "redirect:/contract/list";
+        }
+        Contract contract = new Contract();
+        BeanUtils.copyProperties(contractDto, contract);
+
+        Facility facility = new Facility();
+        facility.setIdService(contractDto.getFacility().getIdService());
+        contract.setFacility(facility);
+
+        Customer customer = new Customer();
+        customer.setId(contractDto.getCustomer().getId());
+        contract.setCustomer(customer);
+
+        Employee employee = new Employee();
+        employee.setIdEmployee(contractDto.getEmployee().getIdEmployee());
+        contract.setEmployee(employee);
+
+        iContractService.save(contract);
+        rd.addFlashAttribute("msg", "thêm hợp đồng thành công");
+        return "redirect:/contract/list";
     }
 }
