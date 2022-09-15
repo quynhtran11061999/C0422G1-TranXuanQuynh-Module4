@@ -67,10 +67,10 @@ public class ContractController {
     @GetMapping("/showAdd")
     public String showAdd(Model model){
             model.addAttribute("contractDto",new Contract());
-            model.addAttribute("customer",new Customer());
-            model.addAttribute("facility",new Facility());
-            model.addAttribute("employee",new Employee());
-            return "contract/add";
+            model.addAttribute("customer",this.iCustomerService.findAll());
+            model.addAttribute("facility",this.iFacilityService.findAll());
+            model.addAttribute("employee",this.iEmployeeService.findAll());
+            return "/contract/add";
     }
 
     @PostMapping("/createContract")
@@ -97,7 +97,7 @@ public class ContractController {
         contract.setEmployee(employee);
 
         iContractService.save(contract);
-        rd.addFlashAttribute("msg", "thêm hợp đồng thành công");
+        rd.addFlashAttribute("msg", "Thêm mới hợp đồng thành công");
         return "redirect:/contract/list";
     }
 }

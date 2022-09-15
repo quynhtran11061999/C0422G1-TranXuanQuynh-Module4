@@ -6,6 +6,7 @@
 </head>
 <body>
 <header th:replace="~{layout/header::header}"></header>
+<h5 style="color: green" th:text="${msg}"></h5>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-5">
@@ -49,7 +50,6 @@
                             <td th:text="${money.getValue()}"></td>
                         </th:block>
                     </th:block>
-                    <!--                <td>Chưa làm</td>-->
                     <td>
                         <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
                                 data-bs-target="#addContact2">

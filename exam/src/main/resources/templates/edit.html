@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <title>Edit Customer</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<header th:replace="~{layout/header::header}"></header>
+<div class="container-fluid">
+    <form action="/customer/update" method="post" th:object="${customerDto}">
+        <h1>Sửa thông tin khách hàng</h1>
+        <fieldset>
+            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
+            <table class="form-control-lg table table-success table-striped">
+                <tr>
+                    <td>
+                        <span>Mã khách hàng:</span>
+                        <input class="form-control" type="text" readonly th:field="*{id}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Loại khách:</label>
+                        <div class="form-control" size="45px">
+                            <select th:field="*{customerType}" style="width: 100%" class="form-select-lg text-center">
+                                <option th:each="customerType: ${customerTypeList}"
+                                        th:value="${customerType.id}" th:text="${customerType.customerTypeName}"></option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Họ tên:</span>
+                        <input  class="form-control" type="text" th:field="*{name}">
+                        <div class="text-danger" th:errors="*{name}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Ngày sinh:</span>
+                        <input  class="form-control" type="text" th:field="*{dayOfBirth}">
+                        <div class="text-danger" th:errors="*{dayOfBirth}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Giới tính:</label>
+                        <select th:field="*{gender}" style="width: 100%" class="form-select-lg text-center">
+                            <option th:value="1">Nam</option>
+                            <option th:value="0">Nữ</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Số CMND:</span>
+                        <input  class="form-control" type="text" th:field="*{idCard}">
+                        <div class="text-danger" th:errors="*{idCard}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Số điện thoại:</span>
+                        <input  class="form-control" type="text" th:field="*{phoneNumber}">
+                        <div class="text-danger" th:errors="*{phoneNumber}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Email:</span>
+                        <input  class="form-control" type="text" th:field="*{email}">
+                        <div class="text-danger" th:errors="*{email}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Địa chỉ:</span>
+                        <input  class="form-control" type="text" th:field="*{address}">
+                        <div class="text-danger" th:errors="*{address}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="d-flex justify-content-center">
+                        <input class="form-control btn-success text-center" style="width: 300px" type="submit"
+                               value="Sửa thông tin khách hàng">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<footer th:replace="~{layout/footer::footer}"></footer>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

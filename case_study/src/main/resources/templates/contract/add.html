@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
-    <title>ADD Customer</title>
+    <title>ADD Contract</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <header th:replace="~{layout/header::header}"></header>
 <div class="container">
-    <form action="/contract/add" method="post" th:object="${contractDto}">
+    <form action="/contract/createContract" method="post" th:object="${contractDto}">
         <h1>Thêm mới hợp đồng</h1>
         <fieldset>
-            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
+            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin hợp đồng</legend>
             <table class="form-control-lg table table-success table-striped">
                 <tr>
                     <td>
@@ -53,11 +53,17 @@
                         <input type="number" class="form-control" id="deposit" th:field="*{deposits}">
                     </td>
                 </tr>
-                <tr>
 
+                <tr>
                     <td>
-                        <label for="total" class="form-label">Tổng tiền</label>
-                        <input type="text" readonly class="form-control" id="total1" name="total">
+                        <label class="form-label">Nhân viên</label>
+                        <select th:field="*{employee.idEmployee}" class="form-select">
+                            <option value="None">Chọn nhân viên</option>
+                            <option th:each="emp:${employee}"
+                                    th:value="${emp.idEmployee}"
+                                    th:text="${emp.name}">
+                            </option>
+                        </select>
                     </td>
                 </tr>
                 <tr>

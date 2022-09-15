@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Furama</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<header th:replace="~{layout/header::header}"></header>
+<div class="container-fluid">
+  <div class="row bg-light p-0">
+    <div class="col-lg- p-0">
+      <video autoplay loop muted playsinline style="width: 100%; height: auto">
+        <source src="/img/video-1.mp4">
+      </video>
+    </div>
+  </div>
+  <div class="row bg-light p-0">
+    <div class="col-lg-3 p-0">
+      <div class="card" style="width: 23rem;">
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/07/CULIRARY.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">CULINARY</h5>
+          <p class="card-text">The resort’s culinary experience features a mixture of the authentic and locally inspired Vietnamese...</p>
+          <a href="#" class="btn btn-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 p-0">
+      <div class="card" style="width: 23rem;">
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/10/02.-ICP-ICP_Furama_Danang_-Ball-Room-4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">MEETING & EVENT</h5>
+          <p class="card-text">A well-appointed International Convention Palace with ballrooms can accommodate up to 1,000 people in style..</p>
+          <a href="#" class="btn btn-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 p-0">
+      <div class="card" style="width: 23rem;">
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/07/RECREATION.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">RECREATION</h5>
+          <p class="card-text">A full range of Water Sports will keep you busy. Stop by the Water Sport House where our experienced staff...</p>
+          <a href="#" class="btn btn-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 p-0">
+      <div class="card" style="width: 23rem;">
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/10/02.-ICP-ICP_Furama_Danang_-Ball-Room-4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ROOM</h5>
+          <p class="card-text">A full range of Water Sports will keep you busy. Stop by the Water Sport House where our experienced staff...</p>
+          <a href="#" class="btn btn-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer th:replace="~{layout/footer::footer}"></footer>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
